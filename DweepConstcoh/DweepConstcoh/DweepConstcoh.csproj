@@ -74,9 +74,11 @@
     <Compile Include="Game\Entities\GroundEntities\WallEntity.cs" />
     <Compile Include="Game\Entities\IEntity.cs" />
     <Compile Include="Game\Entities\PlayerEntity.cs" />
+    <Compile Include="Game\Entities\PlayerState.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\ToolsetSelectorEntity.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\PlayerMoverEntity.cs" />
     <Compile Include="Game\Game.cs" />
+    <Compile Include="Game\GameStatus.cs" />
     <Compile Include="Game\Levels\Level1.cs" />
     <Compile Include="Game\MapStructure\IMap.cs" />
     <Compile Include="Game\MapStructure\Map.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Game\Processors\DrawProcess\Painters\GroundPainters\GroundPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\IPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Tools\ToolsetMap.cs" />
+    <Compile Include="Game\Processors\GameStatusProcess\GameStatusProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessor.cs" />
     <Compile Include="Game\Processors\TaskProcess\BaseTask.cs" />
     <Compile Include="Game\Processors\TaskProcess\ITask.cs" />

@@ -5,6 +5,8 @@ namespace DweepConstcoh.Game.Entities
 {
     public class PlayerEntity : BaseEntity
     {
+        private readonly PlayerState _state;
+
         public PlayerEntity(int x, int y)
             : base(
                   EntityType.Player,
@@ -12,6 +14,7 @@ namespace DweepConstcoh.Game.Entities
                   y,
                   MapLayer.PlayerBody)
         {
+            this._state = PlayerState.Live;
         }
 
         public void GoTo(MapPoint point)
@@ -21,5 +24,7 @@ namespace DweepConstcoh.Game.Entities
             this.X = point.X;
             this.Y = point.Y;
         }
+
+        public bool Is(PlayerState state) => _state == state;
     }
 }

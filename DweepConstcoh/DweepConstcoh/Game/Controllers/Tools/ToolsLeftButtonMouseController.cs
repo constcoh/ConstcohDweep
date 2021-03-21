@@ -6,9 +6,9 @@ namespace DweepConstcoh.Game.Controllers.Tools
 {
     public class ToolsLeftButtonMouseController : IMouseController
     {
-        private DrawSettings _drawSettings;
+        private readonly DrawSettings _drawSettings;
 
-        private Toolset _toolset;
+        private readonly Toolset _toolset;
 
         public ToolsLeftButtonMouseController(
             Toolset toolset)

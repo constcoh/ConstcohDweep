@@ -39,6 +39,11 @@ namespace DweepConstcoh.Game.MapStructure
             return this.Entities.Any(entity => entity.Has(property));
         }
 
+        public bool Has(EntityType type)
+        {
+            return this.Entities.Any(entity => entity.Type == type);
+        }
+
         public bool RemoveEntity(IEntity entity)
         {
             Condition.Requires(entity, nameof(entity)).IsNotNull();

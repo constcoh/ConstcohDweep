@@ -21,6 +21,7 @@ namespace DweepConstcoh
         private int _gameTime = 0;
         private void tmrGameProcesses_Tick(object sender, EventArgs e)
         {
+            _game.ProcessGame();
             _game.ProcessTasks(this.tmrGameProcesses.Interval);
 
             _gameTime += this.tmrGameProcesses.Interval;
