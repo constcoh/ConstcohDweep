@@ -16,6 +16,7 @@ namespace DweepConstcoh.Game.Processors.TaskProcess
         public void Add(ITask task)
         {
             Condition.Requires(task, nameof(task)).IsNotNull();
+            this._tasks.Add(task);
         }
 
         public void RemoveAll(TaskType type)

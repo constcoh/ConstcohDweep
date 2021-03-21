@@ -11,6 +11,11 @@ namespace DweepConstcoh.Game.Processors.TaskProcess
         {
         }
 
+        public TaskProcessResponse(ITask newTask)
+            : this(new[] { newTask })
+        {
+        }
+
         public TaskProcessResponse(IEnumerable<ITask> newTasks)
         {
             Condition.Requires(newTasks, nameof(newTasks)).IsNotNull();

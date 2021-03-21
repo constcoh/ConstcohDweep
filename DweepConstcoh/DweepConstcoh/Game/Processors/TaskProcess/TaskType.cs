@@ -2,6 +2,7 @@
 {
     public enum TaskType
     {
-        Default = 0
+        Default = 0,
+        PlayerMoving = 1
     }
 }

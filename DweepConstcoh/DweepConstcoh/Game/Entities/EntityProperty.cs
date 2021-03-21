@@ -2,6 +2,6 @@
 {
     public enum EntityProperty
     {
-        Impassable = 1,
+        PointIsBusy = 1,
     }
 }

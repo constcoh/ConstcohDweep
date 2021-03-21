@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities;
 
@@ -22,6 +23,12 @@ namespace DweepConstcoh.Game.MapStructure
         public int Width => 18;
         public int Height => 12;
 
+        public bool IsOnMap(int x, int y)
+        {
+            return x >= 0 && x < this.Width &&
+                   y >= 0 && y < this.Height;
+        }
+
         public MapPoint At(int x, int y)
         {
             Condition.Requires(x, nameof(x)).IsGreaterOrEqual(0).IsLessThan(this.Width);
@@ -38,6 +45,40 @@ namespace DweepConstcoh.Game.MapStructure
                 for (int y = 0; y < this.Height; ++y)
                 {
                     entities.AddRange(_points[x, y].Entities);
+                }
+
+            return entities;
+        }
+
+        public IEnumerable<IEntity> ListEntitiesOf(EntityType type)
+        {
+            var entities = new List<IEntity>();
+
+            for (int x = 0; x < this.Width; ++x)
+                for (int y = 0; y < this.Height; ++y)
+                {
+                    var pointEntities = _points[x, y]
+                        .Entities
+                        .Where(entity => entity.Type == type);
+
+                    entities.AddRange(pointEntities);
+                }
+
+            return entities;
+        }
+
+        public IEnumerable<IEntity> ListEntitiesWith(EntityProperty property)
+        {
+            var entities = new List<IEntity>();
+
+            for (int x = 0; x < this.Width; ++x)
+                for (int y = 0; y < this.Height; ++y)
+                {
+                    var pointEntities = _points[x, y]
+                        .Entities
+                        .Where(entity => entity.Has(property));
+
+                    entities.AddRange(pointEntities);
                 }
 
             return entities;

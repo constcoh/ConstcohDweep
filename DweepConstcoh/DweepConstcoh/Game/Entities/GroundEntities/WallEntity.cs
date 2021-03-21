@@ -10,7 +10,7 @@ namespace DweepConstcoh.Game.Entities.GroundEntities
                   x,
                   y,
                   MapLayer.Ground,
-                  new[] { EntityProperty.Impassable })
+                  new[] { EntityProperty.PointIsBusy })
         {
         }
     }

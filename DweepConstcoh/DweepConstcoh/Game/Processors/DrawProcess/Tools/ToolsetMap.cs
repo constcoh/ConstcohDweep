@@ -35,6 +35,12 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
         public int Width => 10;
         public int Height => 1;
 
+        public bool IsOnMap(int x, int y)
+        {
+            return x >= 0 && x < this.Width &&
+                   y >= 0 && y < this.Height;
+        }
+
         public MapPoint At(int x, int y)
         {
             Condition.Requires(x, nameof(x)).IsGreaterOrEqual(0).IsLessThan(this.Width);
@@ -47,6 +53,22 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
         {
             return this._points
                 .SelectMany(point => point.Entities)
+                .ToList();
+        }
+
+        public IEnumerable<IEntity> ListEntitiesOf(EntityType type)
+        {
+            return this._points
+                .SelectMany(point => point.Entities)
+                .Where(entity => entity.Type == type)
+                .ToList();
+        }
+
+        public IEnumerable<IEntity> ListEntitiesWith(EntityProperty property)
+        {
+            return this._points
+                .SelectMany(point => point.Entities)
+                .Where(entity => entity.Has(property))
                 .ToList();
         }
 

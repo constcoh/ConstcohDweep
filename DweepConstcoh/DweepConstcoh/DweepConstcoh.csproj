@@ -100,6 +100,11 @@
     <Compile Include="Game\Processors\TaskProcess\BaseTask.cs" />
     <Compile Include="Game\Processors\TaskProcess\ITask.cs" />
     <Compile Include="Game\Processors\TaskProcess\PlayerMoving\MovePlayerTask.cs" />
+    <Compile Include="Game\Processors\TaskProcess\PlayerMoving\PlayerGoToTargetTask.cs" />
+    <Compile Include="Game\Processors\TaskProcess\PlayerMoving\WayPoint.cs" />
+    <Compile Include="Game\Processors\TaskProcess\PlayerMoving\WaySearcher.cs" />
+    <Compile Include="Game\Processors\TaskProcess\PlayerMoving\WaySearcherMapHelpers.cs" />
+    <Compile Include="Game\Processors\TaskProcess\PlayerMoving\WaySearcherStackHelpers.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskProcessResponse.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskProcessor.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskType.cs" />

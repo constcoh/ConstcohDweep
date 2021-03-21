@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities;
 
 namespace DweepConstcoh.Game.MapStructure
@@ -11,6 +10,12 @@ namespace DweepConstcoh.Game.MapStructure
         
         MapPoint At(int x, int y);
 
+        bool IsOnMap(int x, int y);
+
         IEnumerable<IEntity> ListEntities();
+
+        IEnumerable<IEntity> ListEntitiesOf(EntityType type);
+
+        IEnumerable<IEntity> ListEntitiesWith(EntityProperty property);
     }
 }

@@ -1,4 +1,5 @@
-﻿using DweepConstcoh.Game.MapStructure;
+﻿using CuttingEdge.Conditions;
+using DweepConstcoh.Game.MapStructure;
 
 namespace DweepConstcoh.Game.Entities
 {
@@ -11,6 +12,14 @@ namespace DweepConstcoh.Game.Entities
                   y,
                   MapLayer.PlayerBody)
         {
+        }
+
+        public void GoTo(MapPoint point)
+        {
+            Condition.Requires(point, nameof(point)).IsNotNull();
+
+            this.X = point.X;
+            this.Y = point.Y;
         }
     }
 }

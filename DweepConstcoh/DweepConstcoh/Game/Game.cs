@@ -42,7 +42,7 @@ namespace DweepConstcoh.Game
             this._drawToolsetProcessor = new DrawToolsetProcessor(this._toolset);
             this._taskProcessor = new TaskProcessor();
 
-            this.MapLeftButtonMouseController = new MapLeftButtonMouseController(this._map, this._toolset);
+            this.MapLeftButtonMouseController = new MapLeftButtonMouseController(this._map, this._taskProcessor, this._toolset);
             this.MapRightButtonMouseController = new MapRightButtonMouseController(this._toolset);
             this.ToolsLeftButtonMouseController = new ToolsLeftButtonMouseController(this._toolset);
         }
