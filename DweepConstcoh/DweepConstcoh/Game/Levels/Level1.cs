@@ -1,4 +1,5 @@
-﻿using DweepConstcoh.Game.Entities;
+﻿using CuttingEdge.Conditions;
+using DweepConstcoh.Game.Entities;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Tools;
 
@@ -22,37 +23,34 @@ namespace DweepConstcoh.Game.Levels
             { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }
         };
 
-        public Level1()
+        private readonly IEntityFactory _entityFactory;
+
+        public Level1(IEntityFactory entityFactory)
         {
+            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
+
+            this._entityFactory = entityFactory;
         }
 
-        public Map CreateMap()
+        public void FillMap(IMap map)
         {
-            var map = new Map();
-            var factory = new EntityFactory();
-
             for (int x = 0; x < map.Width; ++x)
                 for (int y = 0; y < map.Height; ++y)
                 {
                     EntityType type = (EntityType)this._ground[y, x];
 
-                    map.At(x, y).AddEntity(factory.Create(type, x, y));
+                    map.At(x, y).AddEntity(_entityFactory.Create(type, x, y));
                 }
 
-            map.At(1, 3).AddEntity(factory.Create(EntityType.Player, 1, 3));
-
-            return map;
+            map.At(1, 3).AddEntity(_entityFactory.Create(EntityType.Player, 1, 3));
         }
 
-        public Toolset CreateToolset()
+        public void FillToolset(IToolset toolset)
         {
-            return new Toolset(new[]
-            {
-                EntityType.Ground,
-                EntityType.Finish,
-                EntityType.Wall,
-                EntityType.Wall,
-            });
+            toolset.Add(EntityType.Ground);
+            toolset.Add(EntityType.Finish);
+            toolset.Add(EntityType.Wall);
+            toolset.Add(EntityType.Wall);
         }
     }
 }

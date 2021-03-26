@@ -4,7 +4,7 @@ using DweepConstcoh.Game.Entities.ToolsetEntities;
 
 namespace DweepConstcoh.Game.Entities
 {
-    public class EntityFactory
+    public class EntityFactory : IEntityFactory
     {
         private readonly IDictionary<EntityType, Type> _types;
 

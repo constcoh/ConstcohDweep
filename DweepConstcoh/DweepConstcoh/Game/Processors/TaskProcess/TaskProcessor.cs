@@ -4,7 +4,7 @@ using CuttingEdge.Conditions;
 
 namespace DweepConstcoh.Game.Processors.TaskProcess
 {
-    public class TaskProcessor
+    public class TaskProcessor : ITaskProcessor
     {
         private List<ITask> _tasks;
 

@@ -8,20 +8,20 @@ namespace DweepConstcoh.Game.Processors.GameStatusProcess
 {
     public class GameStatusProcessor : IGameProcessor
     {
-        private readonly Game _game;
+        private readonly IGameState _gameState;
 
         private readonly IMap _map;
 
         private readonly PlayerEntity _player;
 
         public GameStatusProcessor(
-            Game game,
+            IGameState gameState,
             IMap map)
         {
-            Condition.Requires(game, nameof(game)).IsNotNull();
+            Condition.Requires(gameState, nameof(gameState)).IsNotNull();
             Condition.Requires(map, nameof(map)).IsNotNull();
 
-            _game = game;
+            _gameState = gameState;
             _player = (PlayerEntity)map.ListEntitiesOf(EntityType.Player).First();
             _map = map;
         }
@@ -33,7 +33,7 @@ namespace DweepConstcoh.Game.Processors.GameStatusProcess
 
         public void CheckWin()
         {
-            if(_game.Status == GameStatus.Win)
+            if(_gameState.Status == GameStatus.Win)
             {
                 return;
             }
@@ -42,7 +42,7 @@ namespace DweepConstcoh.Game.Processors.GameStatusProcess
             if (_player.Is(PlayerState.Live) &&
                 isLearnerOnFinish)
             {
-                this._game.Status = GameStatus.Win;
+                this._gameState.Status = GameStatus.Win;
                 var result = MessageBox.Show("Win!");
                 if(result == DialogResult.OK)
                 {

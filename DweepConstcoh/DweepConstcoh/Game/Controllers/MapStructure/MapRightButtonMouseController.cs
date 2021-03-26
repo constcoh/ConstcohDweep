@@ -5,10 +5,10 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
 {
     public class MapRightButtonMouseController : IMouseController
     {
-        private readonly Toolset _toolset;
+        private readonly IToolset _toolset;
 
         public MapRightButtonMouseController(
-            Toolset toolset)
+            IToolset toolset)
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 

@@ -18,6 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+            this._lifetimeScope.Dispose();
         }
 
         #region Windows Form Designer generated code

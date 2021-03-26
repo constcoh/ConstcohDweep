@@ -6,7 +6,5 @@ namespace DweepConstcoh.Game.Processors.DrawProcess
     {
         public Color BackgroundColor => Color.Black;
         public int PointSize => 40;
-
-        public int GameTime { get; set; } = 0;
     }
 }

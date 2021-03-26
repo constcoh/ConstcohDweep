@@ -5,7 +5,7 @@ using MoreLinq;
 
 namespace DweepConstcoh.Game.Tools
 {
-    public class Toolset
+    public class Toolset : IToolset
     {
         private const int _size = 10;
         private readonly List<EntityType> _set;

@@ -10,14 +10,19 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters
 
         private readonly IDrawSettings _drawSettings;
 
+        private readonly IGameState _gameState;
+
         public PlayerPainter(
-            IDrawSettings drawSettings)
+            IDrawSettings drawSettings,
+            IGameState gameState)
         {
             Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+            Condition.Requires(gameState, nameof(gameState)).IsNotNull();
 
             var color = Color.FromArgb(255, 148, 73, 140);
             this._brush = new SolidBrush(color);
             this._drawSettings = drawSettings;
+            this._gameState = gameState;
         }
 
         public EntityType EntityType => EntityType.Player;
@@ -48,7 +53,7 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters
 
             int maxJumpShift = this._drawSettings.PointSize / 3;
 
-            int phase = this._drawSettings.GameTime % jumpPeriodInMilliseconds;
+            int phase = this._gameState.Time % jumpPeriodInMilliseconds;
 
             if(phase > jumpPeriodInMilliseconds /2)
             {

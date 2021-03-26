@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Autofac;
+using DweepConstcoh.Game;
 using DweepConstcoh.Game.Levels;
 
 namespace DweepConstcoh
 {
     public partial class frmMain : Form
     {
-        private Game.Game _game;
+        private IContainer _container;
+
+        private IGame _game;
+
+        private ILifetimeScope _lifetimeScope;
 
         public frmMain()
         {
@@ -16,23 +22,23 @@ namespace DweepConstcoh
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this._game = new Game.Game();
+            this._container = ContainerConfig.Configure();
+            this._lifetimeScope = _container.BeginLifetimeScope();
+            this._game = this._lifetimeScope.Resolve<IGame>();
         }
-        private int _gameTime = 0;
+
         private void tmrGameProcesses_Tick(object sender, EventArgs e)
         {
-            _game.ProcessGame();
-            _game.ProcessTasks(this.tmrGameProcesses.Interval);
+            _game.ProcessGame(this.tmrGameProcesses.Interval);
 
-            _gameTime += this.tmrGameProcesses.Interval;
             using (var graphics = this.pnlGameSpace.CreateGraphics())
             {
-                this._game.Redraw(graphics, _gameTime);
+                this._game.Redraw(graphics);
             }
 
             using (var graphics = this.pnlToolset.CreateGraphics())
             {
-                this._game.RedrawToolset(graphics, _gameTime);
+                this._game.RedrawToolset(graphics);
             }
         }
 

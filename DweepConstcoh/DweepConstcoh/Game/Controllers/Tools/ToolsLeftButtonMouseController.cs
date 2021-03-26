@@ -6,17 +6,19 @@ namespace DweepConstcoh.Game.Controllers.Tools
 {
     public class ToolsLeftButtonMouseController : IMouseController
     {
-        private readonly DrawSettings _drawSettings;
+        private readonly IDrawSettings _drawSettings;
 
-        private readonly Toolset _toolset;
+        private readonly IToolset _toolset;
 
         public ToolsLeftButtonMouseController(
-            Toolset toolset)
+            IDrawSettings drawSettings,
+            IToolset toolset)
         {
+            Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
             this._toolset = toolset;
-            this._drawSettings = new DrawSettings();
+            this._drawSettings = drawSettings;
         }
 
         public void Click(int pixel_x, int pixel_y)

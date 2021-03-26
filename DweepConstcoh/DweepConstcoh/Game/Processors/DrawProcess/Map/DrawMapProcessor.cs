@@ -10,11 +10,13 @@ using MoreLinq;
 
 namespace DweepConstcoh.Game.Processors.DrawProcess.Map
 {
-    public class DrawMapProcessor
+    public class DrawMapProcessor : IDrawMapProcessor
     {
         private readonly Bitmap _bufferBitmap;
 
-        private readonly DrawSettings _drawSettings;
+        private readonly IDrawSettings _drawSettings;
+
+        private readonly IGameState _gameState;
 
         private readonly IMap _map;
 
@@ -22,11 +24,17 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
 
         private readonly IEnumerable<IPainter> _painters;
 
-        public DrawMapProcessor(IMap map)
+        public DrawMapProcessor(
+            IDrawSettings drawSettings,
+            IGameState gameState,
+            IMap map)
         {
+            Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+            Condition.Requires(gameState, nameof(gameState)).IsNotNull();
             Condition.Requires(map, nameof(map)).IsNotNull();
 
-            this._drawSettings = new DrawSettings();
+            this._drawSettings = drawSettings;
+            this._gameState = gameState;
             this._bufferBitmap = new Bitmap(
                 this._drawSettings.PointSize * map.Width,
                 this._drawSettings.PointSize * map.Height);
@@ -45,17 +53,16 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
                 new WallPainter(this._drawSettings),
                 new FinishPainter(this._drawSettings),
 
-                new PlayerPainter(this._drawSettings),
+                new PlayerPainter(this._drawSettings, this._gameState),
 
                 new PlayerMoverPainter(this._drawSettings),
                 new ToolsetSelectorPainter(this._drawSettings)
             };
         }
 
-        public void Draw(Graphics graphics, int gameTime)
+        public void Draw(Graphics graphics)
         {
             // Update common draw settings:
-            this._drawSettings.GameTime = gameTime;
 
             // Draw entities to buffer:
             using (var bufferGraphics = Graphics.FromImage(this._bufferBitmap))

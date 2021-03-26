@@ -11,13 +11,14 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
 {
     public class ToolsetMap : IMap
     {
-        private readonly EntityFactory _entityFactory;
+        private readonly IEntityFactory _entityFactory;
 
         private readonly MapPoint[] _points;
 
-        private readonly Toolset _toolset;
+        private readonly IToolset _toolset;
 
-        public ToolsetMap(Toolset toolset)
+        public ToolsetMap(
+            IToolset toolset)
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 

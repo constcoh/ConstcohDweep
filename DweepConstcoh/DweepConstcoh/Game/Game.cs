@@ -1,62 +1,82 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using DweepConstcoh.Game.Controllers;
 using DweepConstcoh.Game.Controllers.MapStructure;
 using DweepConstcoh.Game.Controllers.Tools;
+using DweepConstcoh.Game.Entities;
 using DweepConstcoh.Game.Levels;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors;
+using DweepConstcoh.Game.Processors.DrawProcess;
 using DweepConstcoh.Game.Processors.DrawProcess.Map;
 using DweepConstcoh.Game.Processors.DrawProcess.Tools;
-using DweepConstcoh.Game.Processors.GameStatusProcess;
 using DweepConstcoh.Game.Processors.TaskProcess;
 using DweepConstcoh.Game.Tools;
 
 namespace DweepConstcoh.Game
 {
-    public class Game
+    public class Game : IGame
     {
         #region Game Objects
+        
+        private readonly IMap _map;
 
-        private readonly Map _map;
+        public readonly IGameState _state;
 
-        private readonly Toolset _toolset;
+        private readonly IToolset _toolset;
 
         #endregion Game Objects
 
         #region Processors
 
-        private readonly DrawMapProcessor _drawProcessor;
+        private readonly IDrawMapProcessor _drawMapProcessor;
 
-        private readonly DrawToolsetProcessor _drawToolsetProcessor;
+        private readonly IDrawToolsetProcessor _drawToolsetProcessor;
 
-        private readonly List<IGameProcessor> _gameProcessors;
+        private readonly IGameProcessorsBasket _gameProcessorsBasket;
 
-        private readonly TaskProcessor _taskProcessor;
+        private readonly ITaskProcessor _taskProcessor;
 
         #endregion Processors
 
-        public Game()
+        public Game(
+            IGameState gameState,            
+            IMap map,
+            IToolset toolset,
+            IDrawMapProcessor drawMapProcessor,
+            IDrawToolsetProcessor drawToolsetProcessor,
+            ITaskProcessor taskProcessor,
+            IDrawSettings drawSettings,
+            IEntityFactory entityFactory)
         {
-            var level = new Level1();
-            this._map = level.CreateMap();
-            this._toolset = level.CreateToolset();
+            this._state = gameState;
+            this._map = map;
+            this._toolset = toolset;
 
-            this._drawProcessor = new DrawMapProcessor(this._map);
-            this._drawToolsetProcessor = new DrawToolsetProcessor(this._toolset);
-            this._gameProcessors = new List<IGameProcessor>
-            {
-                new GameStatusProcessor(
-                    this,
-                    _map)
-            };
+            this._drawMapProcessor = drawMapProcessor;
+            this._drawToolsetProcessor = drawToolsetProcessor;
+            this._taskProcessor = taskProcessor;
 
-            this._taskProcessor = new TaskProcessor();
+            var level = new Level1(entityFactory);
+            level.FillMap(_map);
+            level.FillToolset(_toolset);
 
-            this.MapLeftButtonMouseController = new MapLeftButtonMouseController(this._map, this._taskProcessor, this._toolset);
-            this.MapRightButtonMouseController = new MapRightButtonMouseController(this._toolset);
-            this.ToolsLeftButtonMouseController = new ToolsLeftButtonMouseController(this._toolset);
-            this.Status = GameStatus.InProgress;
+            this.MapLeftButtonMouseController = new MapLeftButtonMouseController(
+                drawSettings,
+                this._map,
+                this._taskProcessor,
+                this._toolset);
+
+            this.MapRightButtonMouseController = new MapRightButtonMouseController(
+                this._toolset);
+
+            this.ToolsLeftButtonMouseController = new ToolsLeftButtonMouseController(
+                drawSettings,
+                this._toolset);
+
+            this._gameProcessorsBasket = new GameProcessorsBasket(
+                this._state,
+                this._map,
+                this._toolset);
         }
 
         public IMouseController MapLeftButtonMouseController { get; }
@@ -65,26 +85,21 @@ namespace DweepConstcoh.Game
 
         public IMouseController ToolsLeftButtonMouseController { get; }
 
-        public GameStatus Status { get; set; }
-
-        public void ProcessGame()
+        public void ProcessGame(int passedIntervalInMilliseconds)
         {
-            this._gameProcessors.ForEach(processor => processor.Process());
-        }
-
-        public void ProcessTasks(int passedIntervalInMilliseconds)
-        {
+            this._state.AddInterval(passedIntervalInMilliseconds);
+            this._gameProcessorsBasket.Process();
             this._taskProcessor.Process(passedIntervalInMilliseconds);
         }
 
-        public void Redraw(Graphics graphics, int gameTime)
+        public void Redraw(Graphics graphics)
         {
-            this._drawProcessor.Draw(graphics, gameTime);
+            this._drawMapProcessor.Draw(graphics);
         }
 
-        public void RedrawToolset(Graphics graphics, int gameTime)
+        public void RedrawToolset(Graphics graphics)
         {
-            this._drawToolsetProcessor.Draw(graphics, gameTime);
+            this._drawToolsetProcessor.Draw(graphics);
         }
     }
 }

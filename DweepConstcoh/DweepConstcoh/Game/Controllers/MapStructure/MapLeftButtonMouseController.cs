@@ -11,24 +11,26 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
 {
     public class MapLeftButtonMouseController : IMouseController
     {
-        private readonly DrawSettings _drawSettings;
+        private readonly IDrawSettings _drawSettings;
 
         private readonly IMap _map;
 
-        private readonly TaskProcessor _taskProcessor;
+        private readonly ITaskProcessor _taskProcessor;
 
-        private readonly Toolset _toolset;
+        private readonly IToolset _toolset;
 
         public MapLeftButtonMouseController(
+            IDrawSettings drawSettings,
             IMap map,
-            TaskProcessor taskProcessor,
-            Toolset toolset)
+            ITaskProcessor taskProcessor,
+            IToolset toolset)
         {
+            Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
             Condition.Requires(map, nameof(map)).IsNotNull();
             Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
-            this._drawSettings = new DrawSettings();
+            this._drawSettings = drawSettings;
             this._map = map;
             this._taskProcessor = taskProcessor;
             this._toolset = toolset;
