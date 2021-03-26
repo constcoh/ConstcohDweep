@@ -22,7 +22,7 @@ namespace DweepConstcoh
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this._container = ContainerConfig.Configure();
+            this._container = ContainerConfig.Configure(new Level1());
             this._lifetimeScope = _container.BeginLifetimeScope();
             this._game = this._lifetimeScope.Resolve<IGame>();
         }

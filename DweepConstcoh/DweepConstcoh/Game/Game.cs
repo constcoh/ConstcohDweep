@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Controllers;
 using DweepConstcoh.Game.Controllers.MapStructure;
 using DweepConstcoh.Game.Controllers.Tools;
@@ -39,26 +40,41 @@ namespace DweepConstcoh.Game
         #endregion Processors
 
         public Game(
+            // Game objects:
             IGameState gameState,            
             IMap map,
             IToolset toolset,
+            // Processors:
             IDrawMapProcessor drawMapProcessor,
             IDrawToolsetProcessor drawToolsetProcessor,
+            IGameProcessorsBasket gameProcessorsBasket,
             ITaskProcessor taskProcessor,
-            IDrawSettings drawSettings,
-            IEntityFactory entityFactory)
+            // Settings:
+            IDrawSettings drawSettings)
         {
+            #region Arguments Validation
+
+            Condition.Requires(gameState, nameof(gameState)).IsNotNull();
+            Condition.Requires(map, nameof(map)).IsNotNull();
+            Condition.Requires(toolset, nameof(toolset)).IsNotNull();
+
+            Condition.Requires(drawMapProcessor, nameof(drawMapProcessor)).IsNotNull();
+            Condition.Requires(drawToolsetProcessor, nameof(drawToolsetProcessor)).IsNotNull();
+            Condition.Requires(gameProcessorsBasket, nameof(gameProcessorsBasket)).IsNotNull();
+            Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
+
+            Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+
+            #endregion Arguments Validation
+
             this._state = gameState;
             this._map = map;
             this._toolset = toolset;
 
             this._drawMapProcessor = drawMapProcessor;
             this._drawToolsetProcessor = drawToolsetProcessor;
+            this._gameProcessorsBasket = gameProcessorsBasket;
             this._taskProcessor = taskProcessor;
-
-            var level = new Level1(entityFactory);
-            level.FillMap(_map);
-            level.FillToolset(_toolset);
 
             this.MapLeftButtonMouseController = new MapLeftButtonMouseController(
                 drawSettings,
@@ -71,11 +87,6 @@ namespace DweepConstcoh.Game
 
             this.ToolsLeftButtonMouseController = new ToolsLeftButtonMouseController(
                 drawSettings,
-                this._toolset);
-
-            this._gameProcessorsBasket = new GameProcessorsBasket(
-                this._state,
-                this._map,
                 this._toolset);
         }
 

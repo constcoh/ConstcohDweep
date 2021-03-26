@@ -109,6 +109,7 @@
     <Compile Include="Game\GameStatus.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\IGameState.cs" />
+    <Compile Include="Game\Levels\ILevel.cs" />
     <Compile Include="Game\Levels\Level1.cs" />
     <Compile Include="Game\MapStructure\IMap.cs" />
     <Compile Include="Game\MapStructure\Map.cs" />

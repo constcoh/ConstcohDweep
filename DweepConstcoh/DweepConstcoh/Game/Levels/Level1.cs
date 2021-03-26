@@ -5,7 +5,7 @@ using DweepConstcoh.Game.Tools;
 
 namespace DweepConstcoh.Game.Levels
 {
-    public class Level1
+    public class Level1 : ILevel
     {
         private readonly int[,] _ground = new int[12, 18]
         {
@@ -25,15 +25,15 @@ namespace DweepConstcoh.Game.Levels
 
         private readonly IEntityFactory _entityFactory;
 
-        public Level1(IEntityFactory entityFactory)
+        public Level1()
         {
-            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
-
-            this._entityFactory = entityFactory;
+            this._entityFactory = new EntityFactory();
         }
 
-        public void FillMap(IMap map)
+        public IMap CreateMap()
         {
+            var map = new Map();
+
             for (int x = 0; x < map.Width; ++x)
                 for (int y = 0; y < map.Height; ++y)
                 {
@@ -43,14 +43,19 @@ namespace DweepConstcoh.Game.Levels
                 }
 
             map.At(1, 3).AddEntity(_entityFactory.Create(EntityType.Player, 1, 3));
+
+            return map;
         }
 
-        public void FillToolset(IToolset toolset)
+        public IToolset CreateToolset()
         {
+            var toolset = new Toolset();
             toolset.Add(EntityType.Ground);
             toolset.Add(EntityType.Finish);
             toolset.Add(EntityType.Wall);
             toolset.Add(EntityType.Wall);
+
+            return toolset;
         }
     }
 }
