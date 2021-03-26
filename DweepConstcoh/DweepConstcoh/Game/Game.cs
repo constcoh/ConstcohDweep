@@ -3,8 +3,6 @@ using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Controllers;
 using DweepConstcoh.Game.Controllers.MapStructure;
 using DweepConstcoh.Game.Controllers.Tools;
-using DweepConstcoh.Game.Entities;
-using DweepConstcoh.Game.Levels;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors;
 using DweepConstcoh.Game.Processors.DrawProcess;

@@ -21,7 +21,7 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
 
         private readonly bool[,] _visitedPoints;
 
-        private readonly int[,] _wayLength;
+        private readonly float[,] _wayLength;
 
         public WaySearcher(
             IMap map,
@@ -62,7 +62,7 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
             backway.Reverse();
             return backway;
         }
-
+        
         private void BuildWayLengths()
         {
             var pointToVisit = this.GetNotVisitedPointWithMinimalWayLength();
@@ -70,17 +70,35 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
             while (pointToVisit != null &&
                 this._wayLength[pointToVisit.X, pointToVisit.Y] < this._infinityWayLength)
             {
-                var newLength = _wayLength[pointToVisit.X, pointToVisit.Y] + 1;
-                var neighbors = pointToVisit.ListNeighbors();
-                neighbors.ForEach(point =>
+                // Process horizontal and vertical heighbours with distance equals to 1
                 {
-                    if (_visitedPoints[point.X, point.Y] == false &&
-                        _wayLength[point.X, point.Y] > newLength)
+                    var newLength = _wayLength[pointToVisit.X, pointToVisit.Y] + 1;
+                    var neighbors = pointToVisit.ListHorizontalAndVerticalNeighbors();
+                    neighbors.ForEach(point =>
                     {
-                        _wayLength[point.X, point.Y] = newLength;
-                        _playerCameFrom[point.X, point.Y] = pointToVisit;
-                    }
-                });
+                        if (_visitedPoints[point.X, point.Y] == false &&
+                            _wayLength[point.X, point.Y] > newLength)
+                        {
+                            _wayLength[point.X, point.Y] = newLength;
+                            _playerCameFrom[point.X, point.Y] = pointToVisit;
+                        }
+                    });
+                }
+
+                // Process diagonal heighbours with distance equals to 1.5
+                {
+                    var newLength = _wayLength[pointToVisit.X, pointToVisit.Y] + 1.5f;
+                    var neighbors = pointToVisit.ListDiagonalNeighbors();
+                    neighbors.ForEach(point =>
+                    {
+                        if (_visitedPoints[point.X, point.Y] == false &&
+                            _wayLength[point.X, point.Y] > newLength)
+                        {
+                            _wayLength[point.X, point.Y] = newLength;
+                            _playerCameFrom[point.X, point.Y] = pointToVisit;
+                        }
+                    });
+                }
 
                 this._visitedPoints[pointToVisit.X, pointToVisit.Y] = true;
 
@@ -139,14 +157,29 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
             this._playerCameFrom[_player.X, _player.Y] = this._player;
             this._wayLength[_player.X, _player.Y] = 0;
 
-            var playerNeighbors = this._player.ListNeighbors();
-            playerNeighbors.ForEach(point =>
+            // Process horizontal and vertical heighbours with distance equals to 1
             {
-                if (_visitedPoints[point.X, point.Y] == false)
+                var playerNeighbors = this._player.ListHorizontalAndVerticalNeighbors();
+                playerNeighbors.ForEach(point =>
                 {
-                    _wayLength[point.X, point.Y] = 1;
-                }
-            });
+                    if (_visitedPoints[point.X, point.Y] == false)
+                    {
+                        _wayLength[point.X, point.Y] = 1;
+                    }
+                });
+            }
+
+            // Process diagonal heighbours with distance equals to 1
+            {
+                var playerNeighbors = this._player.ListDiagonalNeighbors();
+                playerNeighbors.ForEach(point =>
+                {
+                    if (_visitedPoints[point.X, point.Y] == false)
+                    {
+                        _wayLength[point.X, point.Y] = 1.5f;
+                    }
+                });
+            }
         }
 
         private void Search()

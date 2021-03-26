@@ -24,13 +24,13 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
             return walls;
         }
 
-        public static int[,] CreateInitialWayLength(
+        public static float[,] CreateInitialWayLength(
             this IMap map,
-            int infinityWayLength)
+            float infinityWayLength)
         {
             Condition.Requires(map, nameof(map)).IsNotNull();
 
-            var wayLength = new int[map.Width, map.Height];
+            var wayLength = new float[map.Width, map.Height];
             for (int x = 0; x < map.Width; ++x)
                 for (int y = 0; y < map.Height; ++y)
                 {

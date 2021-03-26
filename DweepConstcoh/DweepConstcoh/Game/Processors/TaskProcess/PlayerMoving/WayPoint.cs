@@ -19,17 +19,24 @@ namespace DweepConstcoh.Game.Processors.TaskProcess.PlayerMoving
                    this.Y == point?.Y;
         }
 
-        public IEnumerable<WayPoint> ListNeighbors()
+        public IEnumerable<WayPoint> ListDiagonalNeighbors()
         {
             return new[]
             {
                 new WayPoint(this.X - 1, this.Y - 1),
-                new WayPoint(this.X - 1, this.Y    ),
                 new WayPoint(this.X - 1, this.Y + 1),
-                new WayPoint(this.X    , this.Y + 1),
                 new WayPoint(this.X + 1, this.Y + 1),
-                new WayPoint(this.X + 1, this.Y    ),
                 new WayPoint(this.X + 1, this.Y - 1),
+            };
+        }
+
+        public IEnumerable<WayPoint> ListHorizontalAndVerticalNeighbors()
+        {
+            return new[]
+            {
+                new WayPoint(this.X - 1, this.Y    ),
+                new WayPoint(this.X    , this.Y + 1),
+                new WayPoint(this.X + 1, this.Y    ),
                 new WayPoint(this.X    , this.Y - 1)
             };
         }
