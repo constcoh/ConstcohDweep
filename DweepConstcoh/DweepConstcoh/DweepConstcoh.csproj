@@ -148,7 +148,6 @@
     <Compile Include="Game\Processors\IGameProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessorsBasket.cs" />
     <Compile Include="Game\Processors\LazerProcess\IEntityExtensions.cs" />
-    <Compile Include="Game\Processors\LazerProcess\LazerEntityProcessor.cs" />
     <Compile Include="Game\Processors\LazerProcess\LazerProcessor.cs" />
     <Compile Include="Game\Processors\TaskProcess\BaseTask.cs" />
     <Compile Include="Game\Processors\TaskProcess\ITask.cs" />

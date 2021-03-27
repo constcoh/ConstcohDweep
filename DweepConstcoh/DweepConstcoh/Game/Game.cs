@@ -3,6 +3,7 @@ using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Controllers;
 using DweepConstcoh.Game.Controllers.MapStructure;
 using DweepConstcoh.Game.Controllers.Tools;
+using DweepConstcoh.Game.Entities;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors;
 using DweepConstcoh.Game.Processors.DrawProcess;
@@ -36,7 +37,7 @@ namespace DweepConstcoh.Game
         private readonly ITaskProcessor _taskProcessor;
 
         #endregion Processors
-
+        
         public Game(
             // Game objects:
             IGameState gameState,            
@@ -48,7 +49,8 @@ namespace DweepConstcoh.Game
             IGameProcessorsBasket gameProcessorsBasket,
             ITaskProcessor taskProcessor,
             // Settings:
-            IDrawSettings drawSettings)
+            IDrawSettings drawSettings,
+            IEntityFactory entityFactory)
         {
             #region Arguments Validation
 
@@ -62,6 +64,7 @@ namespace DweepConstcoh.Game
             Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
 
             Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
 
             #endregion Arguments Validation
 
@@ -76,6 +79,7 @@ namespace DweepConstcoh.Game
 
             this.MapLeftButtonMouseController = new MapLeftButtonMouseController(
                 drawSettings,
+                entityFactory,
                 this._map,
                 this._taskProcessor,
                 this._toolset);

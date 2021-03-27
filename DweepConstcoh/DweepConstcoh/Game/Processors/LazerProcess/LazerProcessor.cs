@@ -11,11 +11,7 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
 {
     public class LazerProcessor : IGameProcessor
     {
-        private readonly IEnumerable<IEntity> _busyPoints;
-
         private readonly IMap _map;
-
-        private readonly IEnumerable<MirrorEntity> _mirrors;
 
         private readonly IEnumerable<IEntity> _walls; 
 
@@ -25,10 +21,6 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
             Condition.Requires(map, nameof(map)).IsNotNull();
 
             this._map = map;
-            this._mirrors = this._map.ListEntitiesOf(EntityType.Mirror).As<MirrorEntity>();
-            this._busyPoints = this._map.ListEntitiesWith(EntityProperty.PointIsBusy)
-                .Where(entity => entity.Type != EntityType.Mirror);
-
             this._walls = this._map.ListEntitiesOf(EntityType.Wall);
         }
 
@@ -41,6 +33,10 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
 
         private void Process(LazerEntity lazer)
         {
+            var mirrors = this._map.ListEntitiesOf(EntityType.Mirror).As<MirrorEntity>();
+            var busyPoints = this._map.ListEntitiesWith(EntityProperty.PointIsBusy)
+                .Where(entity => entity.Type != EntityType.Mirror);
+
             var incomingRay = lazer.CreateProducedRay();
 
             while(incomingRay != null)
@@ -52,13 +48,13 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
                 }
 
                 _map.AddEntity(incomingRay);
-                if (_busyPoints.IntersectWithPositionOf(incomingRay))
+                if (busyPoints.IntersectWithPositionOf(incomingRay))
                 {
                     incomingRay = null;
                     continue;
                 }
 
-                var mirror = _mirrors.GetIntersectWithPositionOf(incomingRay);
+                var mirror = mirrors.GetIntersectWithPositionOf(incomingRay);
                 var outgoingRay = 
                     mirror != null
                     ? mirror.GetReflectedRay(incomingRay)

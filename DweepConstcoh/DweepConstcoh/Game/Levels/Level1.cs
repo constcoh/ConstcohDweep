@@ -51,21 +51,19 @@ namespace DweepConstcoh.Game.Levels
             map.AddEntity(new LazerEntity(9, 7, LazerDirection.Down));
             map.AddEntity(new LazerEntity(16, 4, LazerDirection.Left));
             map.AddEntity(new LazerEntity(13, 8, LazerDirection.Right));
-
-            map.AddEntity(new MirrorEntity(3, 2, MirrorPosition.SideDiagonal));
-            map.AddEntity(new MirrorEntity(2, 2, MirrorPosition.MainDiagonal));
-
-
+            
             return map;
         }
 
         public IToolset CreateToolset()
         {
             var toolset = new Toolset();
-            toolset.Add(EntityType.Ground);
-            toolset.Add(EntityType.Finish);
-            toolset.Add(EntityType.Wall);
-            toolset.Add(EntityType.Wall);
+            toolset.Add(EntityType.MirrowMainDiagonal);
+            toolset.Add(EntityType.MirrowMainDiagonal);
+            toolset.Add(EntityType.MirrowMainDiagonal);
+            toolset.Add(EntityType.MirrowSideDiagonal);
+            toolset.Add(EntityType.MirrowSideDiagonal);
+            toolset.Add(EntityType.MirrowSideDiagonal);
 
             return toolset;
         }

@@ -13,6 +13,8 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
     {
         private readonly IDrawSettings _drawSettings;
 
+        private readonly IEntityFactory _entityFactory;
+
         private readonly IMap _map;
 
         private readonly ITaskProcessor _taskProcessor;
@@ -21,16 +23,19 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
 
         public MapLeftButtonMouseController(
             IDrawSettings drawSettings,
+            IEntityFactory entityFactory,
             IMap map,
             ITaskProcessor taskProcessor,
             IToolset toolset)
         {
             Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
             Condition.Requires(map, nameof(map)).IsNotNull();
             Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
             this._drawSettings = drawSettings;
+            this._entityFactory = entityFactory;
             this._map = map;
             this._taskProcessor = taskProcessor;
             this._toolset = toolset;
@@ -68,7 +73,20 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
                 return;
             }
 
-            // put new entity on free space
+            // put new entity on free space:
+            this.AddToolsetSelectedEntityToMap(point);
+        }
+
+        private void AddToolsetSelectedEntityToMap(MapPoint mapPoint)
+        {
+            var selectedEntityType = this._toolset.SelectedType;
+            var newEntity = this._entityFactory.Create(
+                selectedEntityType,
+                mapPoint.X,
+                mapPoint.Y);
+
+            mapPoint.AddEntity(newEntity);
+            this._toolset.RemoveSelected();
         }
     }
 }

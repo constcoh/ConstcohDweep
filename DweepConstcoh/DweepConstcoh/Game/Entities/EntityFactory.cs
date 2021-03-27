@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DweepConstcoh.Game.Entities.LazerEntities;
 using DweepConstcoh.Game.Entities.ToolsetEntities;
 
 namespace DweepConstcoh.Game.Entities
@@ -25,6 +26,16 @@ namespace DweepConstcoh.Game.Entities
 
         public IEntity Create(EntityType type, int x, int y)
         {
+            if (type == EntityType.MirrowMainDiagonal)
+            {
+                return new MirrorEntity(x, y, MirrorPosition.MainDiagonal);
+            }
+
+            if (type == EntityType.MirrowSideDiagonal)
+            {
+                return new MirrorEntity(x, y, MirrorPosition.SideDiagonal);
+            }
+
             if (this._types.ContainsKey(type) == false)
             {
                 throw new Exception("unknown entity type " + type);
