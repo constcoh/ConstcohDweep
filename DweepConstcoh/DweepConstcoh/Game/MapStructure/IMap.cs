@@ -12,10 +12,14 @@ namespace DweepConstcoh.Game.MapStructure
 
         bool IsOnMap(int x, int y);
 
+        void AddEntity(IEntity entity);
+
         IEnumerable<IEntity> ListEntities();
 
         IEnumerable<IEntity> ListEntitiesOf(EntityType type);
 
         IEnumerable<IEntity> ListEntitiesWith(EntityProperty property);
+
+        void RemoveEntities(IEnumerable<IEntity> entities);
     }
 }

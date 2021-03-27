@@ -1,5 +1,6 @@
 ﻿using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities;
+using DweepConstcoh.Game.Entities.LazerEntities;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Tools;
 
@@ -39,10 +40,21 @@ namespace DweepConstcoh.Game.Levels
                 {
                     EntityType type = (EntityType)this._ground[y, x];
 
-                    map.At(x, y).AddEntity(_entityFactory.Create(type, x, y));
+                    map.AddEntity(_entityFactory.Create(type, x, y));
                 }
 
-            map.At(1, 3).AddEntity(_entityFactory.Create(EntityType.Player, 1, 3));
+            map.AddEntity(_entityFactory.Create(EntityType.Player, 1, 3));
+
+            map.AddEntity(new LazerEntity(3, 1, LazerDirection.Down));
+            map.AddEntity(new LazerEntity(4, 10, LazerDirection.Top));
+            map.AddEntity(new LazerEntity(8, 4, LazerDirection.Right));
+            map.AddEntity(new LazerEntity(9, 7, LazerDirection.Down));
+            map.AddEntity(new LazerEntity(16, 4, LazerDirection.Left));
+            map.AddEntity(new LazerEntity(13, 8, LazerDirection.Right));
+
+            map.AddEntity(new MirrorEntity(3, 2, MirrorPosition.SideDiagonal));
+            map.AddEntity(new MirrorEntity(2, 2, MirrorPosition.MainDiagonal));
+
 
             return map;
         }

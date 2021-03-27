@@ -50,6 +50,12 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
             return this._points[x];
         }
 
+
+        public void AddEntity(IEntity entity)
+        {
+            this.At(entity.X, entity.Y).AddEntity(entity);
+        }
+
         public IEnumerable<IEntity> ListEntities()
         {
             return this._points
@@ -93,6 +99,17 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
                     var entity = this._entityFactory.Create(toolsetItemType, index, 0);
                     point.AddEntity(entity);
                 }
+            });
+        }
+
+        public void RemoveEntities(IEnumerable<IEntity> entities)
+        {
+            Condition.Requires(entities, nameof(entities)).IsNotNull();
+
+            entities.ForEach(entity =>
+            {
+                var mapPoint = this.At(entity.X, entity.Y);
+                mapPoint.RemoveEntity(entity);
             });
         }
     }

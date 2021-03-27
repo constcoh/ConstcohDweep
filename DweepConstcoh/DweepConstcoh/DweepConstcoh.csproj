@@ -100,6 +100,15 @@
     <Compile Include="Game\Entities\GroundEntities\WallEntity.cs" />
     <Compile Include="Game\Entities\IEntity.cs" />
     <Compile Include="Game\Entities\IEntityFactory.cs" />
+    <Compile Include="Game\Entities\LazerEntities\LazerDirection.cs" />
+    <Compile Include="Game\Entities\LazerEntities\LazerEntity.cs" />
+    <Compile Include="Game\Entities\LazerEntities\MirrorPositionExtensions.cs" />
+    <Compile Include="Game\Entities\LazerEntities\Rays\IncomingLazerRayEntity.cs" />
+    <Compile Include="Game\Entities\LazerEntities\MirrorPosition.cs" />
+    <Compile Include="Game\Entities\LazerEntities\MirrorEntity.cs" />
+    <Compile Include="Game\Entities\LazerEntities\LazerDirectionExtensions.cs" />
+    <Compile Include="Game\Entities\LazerEntities\Rays\LazerRayEntity.cs" />
+    <Compile Include="Game\Entities\LazerEntities\Rays\OutgoingLazerRayEntity.cs" />
     <Compile Include="Game\Entities\PlayerEntity.cs" />
     <Compile Include="Game\Entities\PlayerState.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\ToolsetSelectorEntity.cs" />
@@ -117,6 +126,9 @@
     <Compile Include="Game\MapStructure\MapPoint.cs" />
     <Compile Include="Game\Processors\DrawProcess\Map\DrawMapProcessor.cs" />
     <Compile Include="Game\Processors\DrawProcess\Map\IDrawMapProcessor.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\MirrorPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerRayPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\ToolsetSelectorPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\PlayerMoverPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Tools\DrawToolsetProcessor.cs" />
@@ -135,6 +147,9 @@
     <Compile Include="Game\Processors\GameStatusProcess\GameStatusProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessorsBasket.cs" />
+    <Compile Include="Game\Processors\LazerProcess\IEntityExtensions.cs" />
+    <Compile Include="Game\Processors\LazerProcess\LazerEntityProcessor.cs" />
+    <Compile Include="Game\Processors\LazerProcess\LazerProcessor.cs" />
     <Compile Include="Game\Processors\TaskProcess\BaseTask.cs" />
     <Compile Include="Game\Processors\TaskProcess\ITask.cs" />
     <Compile Include="Game\Processors\TaskProcess\ITaskProcessor.cs" />

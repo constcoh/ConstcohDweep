@@ -12,5 +12,9 @@
 
         PlayerMover = 5,
         ToolsetSelector = 6,
+
+        Lazer = 7,
+        LazerRay = 8,
+        Mirror = 9,
     }
 }

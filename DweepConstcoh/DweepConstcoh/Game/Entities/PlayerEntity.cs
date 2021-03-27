@@ -12,7 +12,8 @@ namespace DweepConstcoh.Game.Entities
                   EntityType.Player,
                   x,
                   y,
-                  MapLayer.PlayerBody)
+                  MapLayer.Player,
+                  new[] { EntityProperty.PointIsBusy })
         {
             this._state = PlayerState.Live;
         }

@@ -5,6 +5,7 @@ using CuttingEdge.Conditions;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.GroundPainters;
+using DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.ToolsetPainters;
 using MoreLinq;
 
@@ -47,7 +48,7 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
                 MapLayer.Air
             };
 
-            this._painters = new IPainter []
+            this._painters = new IPainter[]
             {
                 new GroundPainter(this._drawSettings),
                 new WallPainter(this._drawSettings),
@@ -56,7 +57,11 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
                 new PlayerPainter(this._drawSettings, this._gameState),
 
                 new PlayerMoverPainter(this._drawSettings),
-                new ToolsetSelectorPainter(this._drawSettings)
+                new ToolsetSelectorPainter(this._drawSettings),
+
+                new LazerPainter(this._drawSettings),
+                new LazerRayPainter(this._drawSettings),
+                new MirrorPainter(this._drawSettings)
             };
         }
 

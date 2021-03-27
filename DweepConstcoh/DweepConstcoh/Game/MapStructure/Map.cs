@@ -2,6 +2,7 @@
 using System.Linq;
 using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities;
+using MoreLinq;
 
 namespace DweepConstcoh.Game.MapStructure
 {
@@ -35,6 +36,11 @@ namespace DweepConstcoh.Game.MapStructure
             Condition.Requires(y, nameof(y)).IsGreaterOrEqual(0).IsLessThan(this.Height);
 
             return this._points[x, y];
+        }
+
+        public void AddEntity(IEntity entity)
+        {
+            this.At(entity.X, entity.Y).AddEntity(entity);
         }
 
         public IEnumerable<IEntity> ListEntities()
@@ -82,6 +88,17 @@ namespace DweepConstcoh.Game.MapStructure
                 }
 
             return entities;
+        }
+
+        public void RemoveEntities(IEnumerable<IEntity> entities)
+        {
+            Condition.Requires(entities, nameof(entities)).IsNotNull();
+
+            entities.ForEach(entity =>
+            {
+                var mapPoint = this.At(entity.X, entity.Y);
+                mapPoint.RemoveEntity(entity);
+            });
         }
     }
 }

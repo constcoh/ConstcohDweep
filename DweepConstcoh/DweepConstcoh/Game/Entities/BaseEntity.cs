@@ -26,6 +26,21 @@ namespace DweepConstcoh.Game.Entities
             int x,
             int y,
             MapLayer mapLayer,
+            EntityProperty property)
+            : this(
+                  type,
+                  x,
+                  y,
+                  mapLayer,
+                  new[] { property })
+        {
+        }
+
+        public BaseEntity(
+            EntityType type,
+            int x,
+            int y,
+            MapLayer mapLayer,
             EntityProperty[] properties)
         {
             this.Type = type;

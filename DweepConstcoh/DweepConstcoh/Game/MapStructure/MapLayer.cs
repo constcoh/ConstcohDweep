@@ -4,7 +4,8 @@
     {
         Ground = 0,
         PlayerBody = 1,
-        Air = 2,
-        ToolsetSelector = 3
+        Player = 2,
+        Air = 3,
+        ToolsetSelector = 4
     }
 }
