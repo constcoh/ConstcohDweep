@@ -64,6 +64,15 @@ namespace DweepConstcoh.Game.Entities
             return this._properties.Contains(property);
         }
 
+        public virtual bool ApplyTool(EntityType entityType)
+        {
+            return false;
+        }
+
+        public virtual void Bomb()
+        {
+        }
+        
         public virtual void Lazer()
         {
         }

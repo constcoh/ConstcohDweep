@@ -49,7 +49,17 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
             return outgoingLazerRay.CreateProducedRay();
         }
 
+        public override void Bomb()
+        {
+            this.Broke();
+        }
+
         public override void Lazer()
+        {
+            this.Broke();
+        }
+
+        private void Broke()
         {
             if (this.State != LazerState.Works)
             {

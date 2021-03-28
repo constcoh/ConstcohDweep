@@ -35,6 +35,11 @@ namespace DweepConstcoh.Game.Entities
             this._taskProcessor = taskProcessor;
         }
 
+        public override void Bomb()
+        {
+            this.Kill();
+        }
+
         public void GoTo(MapPoint point)
         {
             Condition.Requires(point, nameof(point)).IsNotNull();

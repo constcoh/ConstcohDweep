@@ -18,5 +18,9 @@
         Mirror = 9,
         MirrowMainDiagonal = 10,
         MirrowSideDiagonal = 11,
+
+        Bomb = 12,
+        Fire = 13,
+        Torch = 14
     }
 }

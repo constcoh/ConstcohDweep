@@ -92,6 +92,12 @@
     <Compile Include="Game\Controllers\MapStructure\MapRightButtonMouseController.cs" />
     <Compile Include="Game\Controllers\Tools\ToolsLeftButtonMouseController.cs" />
     <Compile Include="Game\Entities\BaseEntity.cs" />
+    <Compile Include="Game\Entities\BombEntities\BombEntity.cs" />
+    <Compile Include="Game\Entities\BombEntities\BombState.cs" />
+    <Compile Include="Game\Entities\BombEntities\FireEntity.cs" />
+    <Compile Include="Game\Entities\BombEntities\Tasks\BombMapPointTask.cs" />
+    <Compile Include="Game\Entities\BombEntities\Tasks\DetonateBombTask.cs" />
+    <Compile Include="Game\Entities\BombEntities\TorchEntity.cs" />
     <Compile Include="Game\Entities\EntityFactory.cs" />
     <Compile Include="Game\Entities\EntityProperty.cs" />
     <Compile Include="Game\Entities\EntityType.cs" />

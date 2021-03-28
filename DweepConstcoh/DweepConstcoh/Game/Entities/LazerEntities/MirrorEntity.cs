@@ -6,7 +6,13 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
 {
     public class MirrorEntity : BaseEntity
     {
-        public MirrorEntity(int x, int y, MirrorPosition position)
+        private IMap _map;
+
+        public MirrorEntity(
+            int x,
+            int y,
+            IMap map,
+            MirrorPosition position)
             : base(
                   EntityType.Mirror,
                   x,
@@ -14,10 +20,18 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
                   MapLayer.PlayerBody,
                   EntityProperty.PointIsBusy)
         {
+            Condition.Requires(map, nameof(map)).IsNotNull();
+
+            this._map = map;
             this.Position = position;
         }
 
         public MirrorPosition Position { get; }
+
+        public override void Bomb()
+        {
+            this._map.RemoveEntity(this);
+        }
 
         public OutgoingLazerRayEntity GetReflectedRay(IncomingLazerRayEntity incomingRay)
         {
