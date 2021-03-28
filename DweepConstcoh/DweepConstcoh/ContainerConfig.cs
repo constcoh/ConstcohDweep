@@ -14,21 +14,22 @@ namespace DweepConstcoh
 {
     public static class ContainerConfig
     {
-        public static IContainer Configure(ILevel level)
+        public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
 
             builder.RegisterType<EntityFactory>().As<IEntityFactory>().InstancePerLifetimeScope();
-            builder.RegisterInstance(level.CreateMap()).As<IMap>().SingleInstance();
-            builder.RegisterInstance(level.CreateToolset()).As<IToolset>().SingleInstance();
+            builder.RegisterType<Map>().As<IMap>().SingleInstance();
+            builder.RegisterType<Toolset>().As<IToolset>().SingleInstance();
             builder.RegisterType<GameState>().As<IGameState>().InstancePerLifetimeScope();
             builder.RegisterType<Game.Game>().As<IGame>().InstancePerLifetimeScope();
 
             builder.RegisterType<DrawMapProcessor>().As<IDrawMapProcessor>().InstancePerLifetimeScope();
             builder.RegisterType<DrawToolsetProcessor>().As<IDrawToolsetProcessor>().InstancePerLifetimeScope();
             builder.RegisterType<DrawSettings>().As<IDrawSettings>().InstancePerLifetimeScope();
-            builder.RegisterType<GameProcessorsBasket>().As<IGameProcessorsBasket>().InstancePerLifetimeScope();
             builder.RegisterType<TaskProcessor>().As<ITaskProcessor>().InstancePerLifetimeScope();
+
+            builder.RegisterType<LevelBuilder>().As<ILevelBuilder>().InstancePerLifetimeScope();
 
             return builder.Build();
         }

@@ -100,5 +100,13 @@ namespace DweepConstcoh.Game.MapStructure
                 mapPoint.RemoveEntity(entity);
             });
         }
+
+        public void RemoveEntity(IEntity entity)
+        {
+            Condition.Requires(entity, nameof(entity)).IsNotNull();
+
+            var mapPoint = this.At(entity.X, entity.Y);
+            mapPoint.RemoveEntity(entity);
+        }
     }
 }

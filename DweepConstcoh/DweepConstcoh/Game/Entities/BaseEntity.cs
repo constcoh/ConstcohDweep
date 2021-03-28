@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DweepConstcoh.Game.MapStructure;
 
 namespace DweepConstcoh.Game.Entities
 {
     public abstract class BaseEntity : IEntity
     {
-        private readonly EntityProperty[] _properties;
+        private readonly List<EntityProperty> _properties;
 
         public BaseEntity(
             EntityType type,
@@ -47,12 +48,12 @@ namespace DweepConstcoh.Game.Entities
             this.X = x;
             this.Y = y;
             this.MapLayer = mapLayer;
-            this._properties = properties;
+            this._properties = properties.ToList();
         }
 
         public EntityType Type { get; }
 
-        public MapLayer MapLayer { get; }
+        public MapLayer MapLayer { get; protected set; }
 
         public int X { get; protected set; }
 
@@ -61,6 +62,15 @@ namespace DweepConstcoh.Game.Entities
         public bool Has(EntityProperty property)
         {
             return this._properties.Contains(property);
+        }
+
+        public virtual void Lazer()
+        {
+        }
+
+        protected bool Remove(EntityProperty property)
+        {
+            return this._properties.Remove(property);
         }
     }
 }

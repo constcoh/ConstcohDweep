@@ -1,5 +1,4 @@
 ﻿using DweepConstcoh.Game.MapStructure;
-using DweepConstcoh.Game.Processors.GameStatusProcess;
 using DweepConstcoh.Game.Processors.LazerProcess;
 using DweepConstcoh.Game.Tools;
 using MoreLinq;
@@ -17,9 +16,6 @@ namespace DweepConstcoh.Game.Processors
         {
             this._gameProcessors = new IGameProcessor[] {
                 new LazerProcessor(
-                    map),
-                new GameStatusProcessor(
-                    gameState,
                     map)
             };
         }

@@ -11,6 +11,8 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities
 
         private readonly IDrawSettings _drawSettings;
 
+        private readonly Brush _pupleBrush;
+
         private readonly Pen _redPen;
 
         public LazerPainter(IDrawSettings drawSettings)
@@ -20,6 +22,9 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities
 
             var blueColor = Color.FromArgb(255, 49, 52, 189);
             this._blueBrush = new SolidBrush(blueColor);
+
+            var pupleColor = Color.FromArgb(255, 123, 24, 49);
+            this._pupleBrush = new SolidBrush(pupleColor);
 
             var redColor = Color.FromArgb(255, 247, 32, 41);
             this._redPen = new Pen(redColor, 5);
@@ -42,16 +47,19 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities
 
 
             var helper = new PointDrawingHelper(this._drawSettings, lazer.X, lazer.Y);
-            this.DrawMainBlueCircle(gc, helper);
+            this.DrawMainBlueCircle(gc, helper, lazer);
             this.DrawDirection(gc, helper, lazer);
         }
 
         private void DrawMainBlueCircle(
             Graphics gc,
-            PointDrawingHelper drawingHelper)
+            PointDrawingHelper drawingHelper,
+            LazerEntity lazer)
         {
             var rectangle = drawingHelper.GetPointRectangle();
-            gc.FillEllipse(this._blueBrush, rectangle);
+            gc.FillEllipse(
+                this.GetMainBrush(lazer.State),
+                rectangle);
         }
 
         private void DrawDirection(
@@ -63,6 +71,19 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities
             var point1 = drawingHelper.GetCentrePoint();
             var point2 = drawingHelper.GetLazerDirectionPoint(lazer.GlowDirection);
             gc.DrawLine(this._redPen, point1, point2);
+        }
+
+        private Brush GetMainBrush(
+            LazerState lazerState)
+        {
+            switch(lazerState)
+            {
+                case LazerState.Sparks:
+                    return this._pupleBrush;
+                case LazerState.Works:
+                default:
+                    return this._blueBrush;
+            }
         }
     }
 }

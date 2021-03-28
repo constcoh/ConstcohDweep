@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using CuttingEdge.Conditions;
+using DweepConstcoh.Game.Entities;
 using DweepConstcoh.Game.Processors.DrawProcess.Map;
 using DweepConstcoh.Game.Tools;
 
@@ -15,13 +16,16 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
 
         public DrawToolsetProcessor(
             IDrawSettings drawSettings,
+            IEntityFactory entityFactory,
             IGameState gameState,
             IToolset toolset)
         {
+            Condition.Requires(drawSettings, nameof(drawSettings)).IsNotNull();
+            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
             this._toolset = toolset;
 
-            this._toolsetMap = new ToolsetMap(this._toolset);
+            this._toolsetMap = new ToolsetMap(entityFactory, this._toolset);
             this._drawMapProcessor = new DrawMapProcessor(drawSettings, gameState, this._toolsetMap);
         }
 

@@ -102,6 +102,7 @@
     <Compile Include="Game\Entities\IEntityFactory.cs" />
     <Compile Include="Game\Entities\LazerEntities\LazerDirection.cs" />
     <Compile Include="Game\Entities\LazerEntities\LazerEntity.cs" />
+    <Compile Include="Game\Entities\LazerEntities\LazerState.cs" />
     <Compile Include="Game\Entities\LazerEntities\MirrorPositionExtensions.cs" />
     <Compile Include="Game\Entities\LazerEntities\Rays\IncomingLazerRayEntity.cs" />
     <Compile Include="Game\Entities\LazerEntities\MirrorPosition.cs" />
@@ -119,7 +120,10 @@
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\IGameState.cs" />
     <Compile Include="Game\Levels\ILevel.cs" />
+    <Compile Include="Game\Levels\ILevelBuilder.cs" />
     <Compile Include="Game\Levels\Level1.cs" />
+    <Compile Include="Game\Levels\LevelBuilder.cs" />
+    <Compile Include="Game\Levels\LevelNumber.cs" />
     <Compile Include="Game\MapStructure\IMap.cs" />
     <Compile Include="Game\MapStructure\Map.cs" />
     <Compile Include="Game\MapStructure\MapLayer.cs" />
@@ -144,7 +148,6 @@
     <Compile Include="Game\Processors\DrawProcess\Tools\IDrawToolsetProcessor.cs" />
     <Compile Include="Game\Processors\DrawProcess\Tools\ToolsetMap.cs" />
     <Compile Include="Game\Processors\GameProcessorsBasket.cs" />
-    <Compile Include="Game\Processors\GameStatusProcess\GameStatusProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessor.cs" />
     <Compile Include="Game\Processors\IGameProcessorsBasket.cs" />
     <Compile Include="Game\Processors\LazerProcess\IEntityExtensions.cs" />
@@ -160,6 +163,9 @@
     <Compile Include="Game\Processors\TaskProcess\PlayerMoving\WaySearcherStackHelpers.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskProcessResponse.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskProcessor.cs" />
+    <Compile Include="Game\Processors\TaskProcess\Tasks\GameWinTask.cs" />
+    <Compile Include="Game\Processors\TaskProcess\Tasks\GameOverTask.cs" />
+    <Compile Include="Game\Processors\TaskProcess\Tasks\RemoveEntityFromMapTask.cs" />
     <Compile Include="Game\Processors\TaskProcess\TaskType.cs" />
     <Compile Include="Game\Tools\IToolset.cs" />
     <Compile Include="Game\Tools\Toolset.cs" />

@@ -11,10 +11,11 @@ namespace DweepConstcoh.Game.Processors.DrawProcess
         private static readonly IDictionary<MapLayer, int> _mapLayerSortedByDrawOrder = new Dictionary<MapLayer, int> 
         {
             { MapLayer.Ground, 0 },
-            { MapLayer.PlayerBody, 1 },
-            { MapLayer.Player, 2 },
-            { MapLayer.Air, 3 },
-            { MapLayer.ToolsetSelector, 4 }
+            { MapLayer.OnGround, 1 },
+            { MapLayer.PlayerBody, 2 },
+            { MapLayer.Player, 3 },
+            { MapLayer.Air, 4 },
+            { MapLayer.ToolsetSelector, 5 }
         };
 
         public static IOrderedEnumerable<IEntity> OrderByDrawOrder(

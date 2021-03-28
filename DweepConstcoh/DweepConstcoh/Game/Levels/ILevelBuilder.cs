@@ -3,9 +3,8 @@ using DweepConstcoh.Game.Tools;
 
 namespace DweepConstcoh.Game.Levels
 {
-    public interface ILevel
+    public interface ILevelBuilder
     {
-        void FillMap(IMap map);
-        void FillToolset(IToolset toolset);
+        void Build(LevelNumber levelNumber, IMap map, IToolset toolset);
     }
 }

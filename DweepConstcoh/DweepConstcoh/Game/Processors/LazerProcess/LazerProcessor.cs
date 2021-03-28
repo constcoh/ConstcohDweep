@@ -48,8 +48,10 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
                 }
 
                 _map.AddEntity(incomingRay);
-                if (busyPoints.IntersectWithPositionOf(incomingRay))
+                var entityOnBusyPoint = busyPoints.GetIntersectWithPositionOf(incomingRay);
+                if (entityOnBusyPoint != null)
                 {
+                    entityOnBusyPoint.Lazer();
                     incomingRay = null;
                     continue;
                 }

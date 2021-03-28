@@ -3,6 +3,7 @@
     public enum GameStatus
     {
         InProgress= 0, 
-        Win = 1
+        Win = 1,
+        GameOver = 2
     }
 }

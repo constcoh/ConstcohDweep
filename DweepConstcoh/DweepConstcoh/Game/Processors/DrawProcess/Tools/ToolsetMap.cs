@@ -18,8 +18,10 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
         private readonly IToolset _toolset;
 
         public ToolsetMap(
+            IEntityFactory entityFactory,
             IToolset toolset)
         {
+            Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
             this._toolset = toolset;
@@ -30,7 +32,7 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
                 _points[x] = new MapPoint(x, 0);
             }
 
-            this._entityFactory = new EntityFactory();
+            this._entityFactory = entityFactory;
         }
 
         public int Width => 10;
@@ -111,6 +113,14 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
                 var mapPoint = this.At(entity.X, entity.Y);
                 mapPoint.RemoveEntity(entity);
             });
+        }
+
+        public void RemoveEntity(IEntity entity)
+        {
+            Condition.Requires(entity, nameof(entity)).IsNotNull();
+
+            var mapPoint = this.At(entity.X, entity.Y);
+            mapPoint.RemoveEntity(entity);
         }
     }
 }

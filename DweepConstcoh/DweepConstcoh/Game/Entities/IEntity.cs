@@ -13,5 +13,7 @@ namespace DweepConstcoh.Game.Entities
         int Y { get; }
 
         bool Has(EntityProperty property);
+
+        void Lazer();
     }
 }

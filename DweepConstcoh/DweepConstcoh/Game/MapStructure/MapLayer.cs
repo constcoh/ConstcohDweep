@@ -3,9 +3,10 @@
     public enum MapLayer
     {
         Ground = 0,
-        PlayerBody = 1,
-        Player = 2,
-        Air = 3,
-        ToolsetSelector = 4
+        OnGround = 1,
+        PlayerBody = 2,
+        Player = 3,
+        Air = 4,
+        ToolsetSelector = 5
     }
 }

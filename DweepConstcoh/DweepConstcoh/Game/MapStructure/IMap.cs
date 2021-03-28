@@ -21,5 +21,7 @@ namespace DweepConstcoh.Game.MapStructure
         IEnumerable<IEntity> ListEntitiesWith(EntityProperty property);
 
         void RemoveEntities(IEnumerable<IEntity> entities);
+
+        void RemoveEntity(IEntity entity);
     }
 }

@@ -3,6 +3,8 @@
     public enum TaskType
     {
         Default = 0,
-        PlayerMoving = 1
+        PlayerMoving = 1,
+        GameWin = 2,
+        GameOver = 3
     }
 }
