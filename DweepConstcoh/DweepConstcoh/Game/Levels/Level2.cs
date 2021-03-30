@@ -50,12 +50,28 @@ namespace DweepConstcoh.Game.Levels
             map.AddEntity(_entityFactory.CreateLazer(2, 10, LazerDirection.Top));
 
             map.AddEntity(_entityFactory.Create(EntityType.MirrowMainDiagonal, 4, 2));
+            map.AddEntity(_entityFactory.Create(EntityType.MirrowMainDiagonal, 12, 2));
             map.AddEntity(_entityFactory.Create(EntityType.MirrowMainDiagonal, 12, 10));
+
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 1, 1));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 4, 1));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 4));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 5));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 6));
         }
 
         public void FillToolset(IToolset toolset)
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
+
+            toolset.Add(EntityType.Torch);
+            toolset.Add(EntityType.Torch);
+            toolset.Add(EntityType.Torch);
+            toolset.Add(EntityType.Torch);
+            toolset.Add(EntityType.MirrowSideDiagonal);
+            toolset.Add(EntityType.MirrowSideDiagonal);
+            toolset.Add(EntityType.MirrowMainDiagonal);
+            toolset.Add(EntityType.MirrowMainDiagonal);
         }
     }
 }

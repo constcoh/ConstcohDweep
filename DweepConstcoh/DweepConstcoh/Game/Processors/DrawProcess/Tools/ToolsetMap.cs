@@ -58,6 +58,11 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Tools
             this.At(entity.X, entity.Y).AddEntity(entity);
         }
 
+        public void LazerPoint(int x, int y)
+        {
+            this.At(x, y).Entities.ForEach(entity => entity.Lazer());
+        }
+
         public IEnumerable<IEntity> ListEntities()
         {
             return this._points

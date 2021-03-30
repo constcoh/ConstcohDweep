@@ -137,6 +137,9 @@
     <Compile Include="Game\MapStructure\MapPoint.cs" />
     <Compile Include="Game\Processors\DrawProcess\Map\DrawMapProcessor.cs" />
     <Compile Include="Game\Processors\DrawProcess\Map\IDrawMapProcessor.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\BombPainters\FirePainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\BombPainters\BombPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\BombPainters\TorchPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\MirrorPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerRayPainter.cs" />

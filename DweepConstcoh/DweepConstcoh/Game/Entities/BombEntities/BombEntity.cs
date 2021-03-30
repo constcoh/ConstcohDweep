@@ -26,7 +26,7 @@ namespace DweepConstcoh.Game.Entities.BombEntities
                   EntityType.Bomb,
                   x,
                   y,
-                  MapLayer.PlayerBody,
+                  MapLayer.PlayerFeets,
                   EntityProperty.PointIsBusy)
         {
             Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
@@ -41,7 +41,7 @@ namespace DweepConstcoh.Game.Entities.BombEntities
 
         public BombState State { get; private set; }
 
-        public virtual bool ApplyTool(EntityType entityType)
+        public override bool ApplyTool(EntityType entityType)
         {
             if (entityType == EntityType.Torch)
             {

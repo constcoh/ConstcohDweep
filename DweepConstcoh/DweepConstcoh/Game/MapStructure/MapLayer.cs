@@ -4,9 +4,10 @@
     {
         Ground = 0,
         OnGround = 1,
-        PlayerBody = 2,
-        Player = 3,
-        Air = 4,
-        ToolsetSelector = 5
+        PlayerFeets = 2,
+        PlayerBody = 3,
+        Player = 4,
+        Air = 5,
+        ToolsetSelector = 6
     }
 }

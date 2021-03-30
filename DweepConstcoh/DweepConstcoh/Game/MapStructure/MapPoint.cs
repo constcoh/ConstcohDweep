@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities;
@@ -27,6 +28,19 @@ namespace DweepConstcoh.Game.MapStructure
             Condition.Requires(entity, nameof(entity)).IsNotNull();
 
             this._entities.Add(entity);
+        }
+
+        public bool ApplyTool(EntityType entityType)
+        {
+            foreach(var entity in this._entities)
+            {
+                if (entity.ApplyTool(entityType))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void ClearEntitires()

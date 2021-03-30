@@ -12,10 +12,11 @@ namespace DweepConstcoh.Game.Processors.DrawProcess
         {
             { MapLayer.Ground, 0 },
             { MapLayer.OnGround, 1 },
-            { MapLayer.PlayerBody, 2 },
-            { MapLayer.Player, 3 },
-            { MapLayer.Air, 4 },
-            { MapLayer.ToolsetSelector, 5 }
+            { MapLayer.PlayerFeets, 2 },
+            { MapLayer.PlayerBody, 3 },
+            { MapLayer.Player, 4 },
+            { MapLayer.Air, 5 },
+            { MapLayer.ToolsetSelector, 6 }
         };
 
         public static IOrderedEnumerable<IEntity> OrderByDrawOrder(

@@ -3,5 +3,6 @@
     public enum EntityProperty
     {
         PointIsBusy = 1,
+        StopLazerRay = 2
     }
 }

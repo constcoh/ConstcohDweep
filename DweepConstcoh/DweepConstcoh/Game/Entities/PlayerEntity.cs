@@ -24,7 +24,10 @@ namespace DweepConstcoh.Game.Entities
                   x,
                   y,
                   MapLayer.Player,
-                  new[] { EntityProperty.PointIsBusy })
+                  new[] {
+                      EntityProperty.PointIsBusy,
+                    EntityProperty.StopLazerRay
+                  })
         {
             Condition.Requires(gameState, nameof(gameState)).IsNotNull();
             Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
@@ -90,7 +93,7 @@ namespace DweepConstcoh.Game.Entities
 
             this._state = PlayerState.Died;
             this.MapLayer = MapLayer.OnGround;
-            this.Remove(EntityProperty.PointIsBusy);
+            this.Remove(EntityProperty.StopLazerRay);
             this._taskProcessor.RemoveAll(TaskType.GameWin);
             this._taskProcessor.RemoveAll(TaskType.PlayerMoving);
             this._taskProcessor.Add(

@@ -34,7 +34,7 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
         private void Process(LazerEntity lazer)
         {
             var mirrors = this._map.ListEntitiesOf(EntityType.Mirror).As<MirrorEntity>();
-            var busyPoints = this._map.ListEntitiesWith(EntityProperty.PointIsBusy)
+            var stopLazerPoints = this._map.ListEntitiesWith(EntityProperty.StopLazerRay)
                 .Where(entity => entity.Type != EntityType.Mirror);
 
             var incomingRay = lazer.CreateProducedRay();
@@ -48,10 +48,10 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
                 }
 
                 _map.AddEntity(incomingRay);
-                var entityOnBusyPoint = busyPoints.GetIntersectWithPositionOf(incomingRay);
-                if (entityOnBusyPoint != null)
+                _map.LazerPoint(incomingRay.X, incomingRay.Y);
+                var stopLazerPoint = stopLazerPoints.GetIntersectWithPositionOf(incomingRay);
+                if (stopLazerPoint != null)
                 {
-                    entityOnBusyPoint.Lazer();
                     incomingRay = null;
                     continue;
                 }

@@ -18,7 +18,10 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
                   x,
                   y,
                   MapLayer.PlayerBody,
-                  EntityProperty.PointIsBusy)
+                  new[]{
+                      EntityProperty.PointIsBusy,
+                      EntityProperty.StopLazerRay
+                  })
         {
             Condition.Requires(map, nameof(map)).IsNotNull();
 

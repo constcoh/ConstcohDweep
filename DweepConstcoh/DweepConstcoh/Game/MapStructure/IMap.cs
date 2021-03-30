@@ -14,6 +14,8 @@ namespace DweepConstcoh.Game.MapStructure
 
         void AddEntity(IEntity entity);
 
+        void LazerPoint(int x, int y);
+
         IEnumerable<IEntity> ListEntities();
 
         IEnumerable<IEntity> ListEntitiesOf(EntityType type);

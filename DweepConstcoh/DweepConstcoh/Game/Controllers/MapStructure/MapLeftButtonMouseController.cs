@@ -70,6 +70,11 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
             if (point.Has(EntityProperty.PointIsBusy))
             {
                 // apply to point
+                if (point.ApplyTool(this._toolset.SelectedType))
+                {
+                    this._toolset.RemoveSelected();
+                }
+
                 return;
             }
 
@@ -84,6 +89,11 @@ namespace DweepConstcoh.Game.Controllers.MapStructure
                 selectedEntityType,
                 mapPoint.X,
                 mapPoint.Y);
+
+            if (newEntity.Has(EntityProperty.PointIsBusy) == false)
+            {
+                return;
+            }
 
             mapPoint.AddEntity(newEntity);
             this._toolset.RemoveSelected();

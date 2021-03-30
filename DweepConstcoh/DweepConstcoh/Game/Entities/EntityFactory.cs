@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CuttingEdge.Conditions;
+using DweepConstcoh.Game.Entities.BombEntities;
 using DweepConstcoh.Game.Entities.LazerEntities;
 using DweepConstcoh.Game.Entities.ToolsetEntities;
 using DweepConstcoh.Game.MapStructure;
@@ -38,7 +39,9 @@ namespace DweepConstcoh.Game.Entities
                 { EntityType.Wall, typeof(GroundEntities.WallEntity) },
                 
                 { EntityType.PlayerMover, typeof(PlayerMoverEntity) },
-                { EntityType.ToolsetSelector, typeof(ToolsetSelectorEntity) }
+                { EntityType.ToolsetSelector, typeof(ToolsetSelectorEntity) },
+
+                { EntityType.Torch, typeof(TorchEntity) }
             };
         }
 
@@ -46,6 +49,10 @@ namespace DweepConstcoh.Game.Entities
         {
             switch(type)
             {
+                case EntityType.Bomb:
+                    return this.CreateBomb(x, y);
+                case EntityType.Fire:
+                    return this.CreateFire(x, y);
                 case EntityType.MirrowMainDiagonal:
                 case EntityType.MirrowSideDiagonal:
                     return this.CreateMirror(type, x, y);
@@ -68,16 +75,26 @@ namespace DweepConstcoh.Game.Entities
             return new LazerEntity(x, y, glowDirection, this._map, this._taskProcessor);
         }
 
+        private BombEntity CreateBomb(int x, int y)
+        {
+            return new BombEntity(x, y, this, this._map, this._taskProcessor);
+        }
+
+        private FireEntity CreateFire(int x, int y)
+        {
+            return new FireEntity(x, y, this, this._map, this._taskProcessor);
+        }
+
         private MirrorEntity CreateMirror(EntityType type, int x, int y)
         {
             if (type == EntityType.MirrowMainDiagonal)
             {
-                return new MirrorEntity(x, y, MirrorPosition.MainDiagonal);
+                return new MirrorEntity(x, y, this._map, MirrorPosition.MainDiagonal);
             }
 
             if (type == EntityType.MirrowSideDiagonal)
             {
-                return new MirrorEntity(x, y, MirrorPosition.SideDiagonal);
+                return new MirrorEntity(x, y, this._map, MirrorPosition.SideDiagonal);
             }
 
             throw new Exception("unknown entity type " + type);

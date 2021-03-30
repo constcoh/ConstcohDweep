@@ -43,6 +43,11 @@ namespace DweepConstcoh.Game.MapStructure
             this.At(entity.X, entity.Y).AddEntity(entity);
         }
 
+        public void LazerPoint(int x, int y)
+        {
+            this.At(x, y).Entities.ForEach(entity => entity.Lazer());
+        }
+
         public IEnumerable<IEntity> ListEntities()
         {
             var entities = new List<IEntity>();

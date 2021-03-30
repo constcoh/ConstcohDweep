@@ -4,6 +4,7 @@ using System.Linq;
 using CuttingEdge.Conditions;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters;
+using DweepConstcoh.Game.Processors.DrawProcess.Painters.BombPainters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.GroundPainters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.ToolsetPainters;
@@ -61,7 +62,11 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
 
                 new LazerPainter(this._drawSettings),
                 new LazerRayPainter(this._drawSettings),
-                new MirrorPainter(this._drawSettings)
+                new MirrorPainter(this._drawSettings),
+
+                new BombPainter(this._drawSettings),
+                new FirePainter(this._drawSettings),
+                new TorchPainter(this._drawSettings)
             };
         }
 
