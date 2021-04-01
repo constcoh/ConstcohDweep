@@ -121,7 +121,7 @@ namespace DweepConstcoh.Game.Entities
             }
 
             var toolOnMap = (ToolOnMapEntity)toolOnMapEntity;
-            this._toolset.Add(toolOnMap.InnerEntity.Type);
+            this._toolset.Add(toolOnMap.FullToolEntityType);
             newMapPoint.RemoveEntity(toolOnMap);
         }
     }

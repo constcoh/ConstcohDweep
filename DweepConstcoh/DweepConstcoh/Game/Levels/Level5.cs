@@ -50,35 +50,26 @@ namespace DweepConstcoh.Game.Levels
             map.AddEntity(_entityFactory.Create(EntityType.LazerTop, 2, 10));
 
             map.AddEntity(_entityFactory.Create(EntityType.MirrorMainDiagonal, 4, 2));
-            map.AddEntity(_entityFactory.Create(EntityType.MirrorMainDiagonal, 12, 2));
             map.AddEntity(_entityFactory.Create(EntityType.MirrorMainDiagonal, 12, 10));
 
-            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 1, 1));
-            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 4, 1));
             map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 4));
             map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 5));
             map.AddEntity(_entityFactory.Create(EntityType.Bomb, 12, 6));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 15, 4));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 15, 10));
+            map.AddEntity(_entityFactory.Create(EntityType.Bomb, 16, 7));
 
-
-            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.Bomb, 8, 6));
-            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.RotateToLeft, 8, 7));
-            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.RotateToRight, 9, 7));
-            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.MirrorMainDiagonal, 6, 6));
-            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.Torch, 6, 7));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.Torch, 1, 6));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.RotateToLeft, 7, 7));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.MirrorMainDiagonal, 8, 7));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.Bomb, 9, 7));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.Torch, 13, 5));
+            map.AddEntity(_entityFactory.CreateToolOnMapEntity(EntityType.RotateToRight, 16, 10));
         }
 
         public void FillToolset(IToolset toolset)
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
-
-            toolset.Add(EntityType.RotateToLeft);
-            toolset.Add(EntityType.RotateToLeft);
-            toolset.Add(EntityType.RotateToLeft);
-            toolset.Add(EntityType.RotateToLeft);
-            toolset.Add(EntityType.RotateToRight);
-            toolset.Add(EntityType.RotateToRight);
-            toolset.Add(EntityType.RotateToRight);
-            toolset.Add(EntityType.RotateToRight);
         }
     }
 }

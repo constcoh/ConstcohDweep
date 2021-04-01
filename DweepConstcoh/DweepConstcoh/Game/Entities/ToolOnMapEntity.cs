@@ -18,8 +18,11 @@ namespace DweepConstcoh.Game.Entities
         {
             Condition.Requires(entityFactory, nameof(entityFactory)).IsNotNull();
 
+            this.FullToolEntityType = toolEntityType;
             this.InnerEntity = entityFactory.Create(toolEntityType, x, y);
         }
+
+        public EntityType FullToolEntityType { get; }
 
         public IEntity InnerEntity { get; }
     }

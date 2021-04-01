@@ -13,15 +13,12 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
     {
         private readonly IMap _map;
 
-        private readonly IEnumerable<IEntity> _walls; 
-
         public LazerProcessor(
             IMap map)
         {
             Condition.Requires(map, nameof(map)).IsNotNull();
 
             this._map = map;
-            this._walls = this._map.ListEntitiesOf(EntityType.Wall);
         }
 
         public void Process()
@@ -33,6 +30,7 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
 
         private void Process(LazerEntity lazer)
         {
+            var walls = this._map.ListEntitiesOf(EntityType.Wall);
             var mirrors = this._map.ListEntitiesOf(EntityType.Mirror).As<MirrorEntity>();
             var stopLazerPoints = this._map.ListEntitiesWith(EntityProperty.StopLazerRay)
                 .Where(entity => entity.Type != EntityType.Mirror);
@@ -41,7 +39,7 @@ namespace DweepConstcoh.Game.Processors.LazerProcess
 
             while(incomingRay != null)
             {
-                if (_walls.IntersectWithPositionOf(incomingRay))
+                if (walls.IntersectWithPositionOf(incomingRay))
                 {
                     incomingRay = null;
                     continue;

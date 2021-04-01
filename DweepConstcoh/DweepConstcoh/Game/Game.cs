@@ -18,10 +18,12 @@ namespace DweepConstcoh.Game
     public class Game : IGame
     {
         #region Game Objects
-        
+
+        private readonly ILevelBuilder _levelBuilder;
+
         private readonly IMap _map;
 
-        public readonly IGameState _state;
+        private readonly IGameState _state;
 
         private readonly IToolset _toolset;
 
@@ -71,6 +73,7 @@ namespace DweepConstcoh.Game
 
             #endregion Arguments Validation
 
+            this._levelBuilder = levelBuilder;
             this._state = gameState;
             this._map = map;
             this._toolset = toolset;
@@ -78,9 +81,7 @@ namespace DweepConstcoh.Game
             this._drawMapProcessor = drawMapProcessor;
             this._drawToolsetProcessor = drawToolsetProcessor;
             this._taskProcessor = taskProcessor;
-
-            levelBuilder.Build(LevelNumber.Level5, _map, _toolset);
-
+            
             this._gameProcessorsBasket = new GameProcessorsBasket(
                 this._state,
                 this._map,
@@ -123,6 +124,11 @@ namespace DweepConstcoh.Game
         public void RedrawToolset(Graphics graphics)
         {
             this._drawToolsetProcessor.Draw(graphics);
+        }
+
+        public void StartLevel(LevelNumber level)
+        {
+            this._levelBuilder.Build(level, _map, _toolset);
         }
     }
 }

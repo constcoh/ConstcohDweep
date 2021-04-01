@@ -25,6 +25,7 @@ namespace DweepConstcoh
             this._container = ContainerConfig.Configure();
             this._lifetimeScope = _container.BeginLifetimeScope();
             this._game = this._lifetimeScope.Resolve<IGame>();
+            this._game.StartLevel(LevelNumber.Level1);
         }
 
         private void tmrGameProcesses_Tick(object sender, EventArgs e)
@@ -58,6 +59,26 @@ namespace DweepConstcoh
                     this._game.MapRightButtonMouseController.Click(e.X, e.Y);
                     return;
             }
+        }
+
+        private void btnLevel1_Click(object sender, EventArgs e)
+        {
+            this.RestartGame(LevelNumber.Level1);
+        }
+
+        private void btnLevel5_Click(object sender, EventArgs e)
+        {
+            this.RestartGame(LevelNumber.Level5);
+        }
+
+        private void RestartGame(LevelNumber level)
+        {
+            this._lifetimeScope.Dispose();
+            this._container.Dispose();
+            this._container = ContainerConfig.Configure();
+            this._lifetimeScope = this._container.BeginLifetimeScope();
+            this._game = this._lifetimeScope.Resolve<IGame>();
+            this._game.StartLevel(level);
         }
     }
 }
