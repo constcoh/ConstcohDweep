@@ -120,6 +120,7 @@
     <Compile Include="Game\Entities\PlayerState.cs" />
     <Compile Include="Game\Entities\RotateEntities\RotateToRightEntity.cs" />
     <Compile Include="Game\Entities\RotateEntities\RotateToLeftEntity.cs" />
+    <Compile Include="Game\Entities\ToolOnMapEntity.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\ToolsetSelectorEntity.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\PlayerMoverEntity.cs" />
     <Compile Include="Game\Game.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="Game\IGameState.cs" />
     <Compile Include="Game\Levels\ILevel.cs" />
     <Compile Include="Game\Levels\ILevelBuilder.cs" />
-    <Compile Include="Game\Levels\Level2.cs" />
+    <Compile Include="Game\Levels\Level5.cs" />
     <Compile Include="Game\Levels\Level1.cs" />
     <Compile Include="Game\Levels\LevelBuilder.cs" />
     <Compile Include="Game\Levels\LevelNumber.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerRayPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\RotateEntities\RofateToLeftPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\RotateEntities\RofateToRightPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\ToolOnMapPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\ToolsetSelectorPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\PlayerMoverPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Tools\DrawToolsetProcessor.cs" />

@@ -46,24 +46,24 @@ namespace DweepConstcoh.Game.Levels
 
             map.AddEntity(_entityFactory.Create(EntityType.Player, 1, 3));
 
-            map.AddEntity(_entityFactory.CreateLazer(3, 1, LazerDirection.Down));
-            map.AddEntity(_entityFactory.CreateLazer(4, 10, LazerDirection.Top));
-            map.AddEntity(_entityFactory.CreateLazer(8, 4, LazerDirection.Right));
-            map.AddEntity(_entityFactory.CreateLazer(9, 7, LazerDirection.Down));
-            map.AddEntity(_entityFactory.CreateLazer(16, 4, LazerDirection.Left));
-            map.AddEntity(_entityFactory.CreateLazer(13, 8, LazerDirection.Right));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerDown, 3, 1));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerTop, 4, 10));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerRight, 8, 4));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerDown, 9, 7));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerLeft, 16, 4));
+            map.AddEntity(_entityFactory.Create(EntityType.LazerRight, 13, 8));
         }
 
         public void FillToolset(IToolset toolset)
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
-            toolset.Add(EntityType.MirrowMainDiagonal);
-            toolset.Add(EntityType.MirrowMainDiagonal);
-            toolset.Add(EntityType.MirrowMainDiagonal);
-            toolset.Add(EntityType.MirrowSideDiagonal);
-            toolset.Add(EntityType.MirrowSideDiagonal);
-            toolset.Add(EntityType.MirrowSideDiagonal);
+            toolset.Add(EntityType.MirrorMainDiagonal);
+            toolset.Add(EntityType.MirrorMainDiagonal);
+            toolset.Add(EntityType.MirrorMainDiagonal);
+            toolset.Add(EntityType.MirrorSideDiagonal);
+            toolset.Add(EntityType.MirrorSideDiagonal);
+            toolset.Add(EntityType.MirrorSideDiagonal);
         }
     }
 }

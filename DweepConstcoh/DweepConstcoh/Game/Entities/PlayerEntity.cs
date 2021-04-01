@@ -3,6 +3,7 @@ using CuttingEdge.Conditions;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors.TaskProcess;
 using DweepConstcoh.Game.Processors.TaskProcess.Tasks;
+using DweepConstcoh.Game.Tools;
 
 namespace DweepConstcoh.Game.Entities
 {
@@ -14,11 +15,14 @@ namespace DweepConstcoh.Game.Entities
 
         private readonly ITaskProcessor _taskProcessor;
 
+        private readonly IToolset _toolset;
+
         public PlayerEntity(
             int x,
             int y, 
             IGameState gameState,
-            ITaskProcessor taskProcessor)
+            ITaskProcessor taskProcessor,
+            IToolset toolset)
             : base(
                   EntityType.Player,
                   x,
@@ -31,11 +35,13 @@ namespace DweepConstcoh.Game.Entities
         {
             Condition.Requires(gameState, nameof(gameState)).IsNotNull();
             Condition.Requires(taskProcessor, nameof(taskProcessor)).IsNotNull();
+            Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
             this._state = PlayerState.Live;
 
             this._gameState = gameState;
             this._taskProcessor = taskProcessor;
+            this._toolset = toolset;
         }
 
         public override void Bomb()
@@ -48,6 +54,7 @@ namespace DweepConstcoh.Game.Entities
             Condition.Requires(point, nameof(point)).IsNotNull();
 
             this.CheckWin(point);
+            this.PickupTool(point);
 
             this.X = point.X;
             this.Y = point.Y;
@@ -98,6 +105,24 @@ namespace DweepConstcoh.Game.Entities
             this._taskProcessor.RemoveAll(TaskType.PlayerMoving);
             this._taskProcessor.Add(
                 new GameOverTask(this._gameState));
+        }
+
+        private void PickupTool(MapPoint newMapPoint)
+        {
+            Condition.Requires(newMapPoint, nameof(newMapPoint)).IsNotNull();
+
+            var toolOnMapEntity = newMapPoint.Entities
+                .FirstOrDefault(entity => entity.Type == EntityType.ToolOnMap);
+
+            if(toolOnMapEntity == null ||
+                this._toolset.IsFull)
+            {
+                return;
+            }
+
+            var toolOnMap = (ToolOnMapEntity)toolOnMapEntity;
+            this._toolset.Add(toolOnMap.InnerEntity.Type);
+            newMapPoint.RemoveEntity(toolOnMap);
         }
     }
 }

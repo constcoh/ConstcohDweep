@@ -102,13 +102,13 @@ namespace DweepConstcoh.Game.Processors.DrawProcess
                 _drawSettings.PointSize * (_y + 1) - 2);
         }
 
-        public Rectangle GetPointRectangle()
+        public Rectangle GetPointRectangle(int offsetFromSide = 0)
         {
             return new Rectangle(
-                _drawSettings.PointSize * _x + 1,
-                _drawSettings.PointSize * _y + 1,
-                _drawSettings.PointSize - 2,
-                _drawSettings.PointSize - 2);
+                _drawSettings.PointSize * _x + 1 + offsetFromSide,
+                _drawSettings.PointSize * _y + 1 + offsetFromSide,
+                _drawSettings.PointSize - 2 - 2 * offsetFromSide,
+                _drawSettings.PointSize - 2 - 2 * offsetFromSide);
         }
 
         public Rectangle GetPointRectangle(double radius)

@@ -5,6 +5,7 @@ namespace DweepConstcoh.Game.Tools
     public interface IToolset
     {
         int IndexOfSelectedItem { get; }
+        bool IsFull { get; }
         EntityType SelectedType { get; }
 
         void Add(EntityType entityType);

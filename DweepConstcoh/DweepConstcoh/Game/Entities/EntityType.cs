@@ -14,16 +14,22 @@
         ToolsetSelector = 6,
 
         Lazer = 7,
-        LazerRay = 8,
-        Mirror = 9,
-        MirrowMainDiagonal = 10,
-        MirrowSideDiagonal = 11,
+        LazerTop = 8,
+        LazerLeft = 9,
+        LazerDown = 10,
+        LazerRight = 11,
+        LazerRay = 12,
+        Mirror = 13,
+        MirrorMainDiagonal = 14,
+        MirrorSideDiagonal = 15,
 
-        Bomb = 12,
-        Fire = 13,
-        Torch = 14,
+        Bomb = 16,
+        Fire = 17,
+        Torch = 18,
 
-        RotateToLeft = 15,
-        RotateToRight = 16
+        RotateToLeft = 19,
+        RotateToRight = 20,
+
+        ToolOnMap = 21
     }
 }

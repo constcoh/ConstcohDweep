@@ -79,7 +79,7 @@ namespace DweepConstcoh.Game
             this._drawToolsetProcessor = drawToolsetProcessor;
             this._taskProcessor = taskProcessor;
 
-            levelBuilder.Build(LevelNumber.Level2, _map, _toolset);
+            levelBuilder.Build(LevelNumber.Level5, _map, _toolset);
 
             this._gameProcessorsBasket = new GameProcessorsBasket(
                 this._state,

@@ -23,6 +23,8 @@ namespace DweepConstcoh.Game.Tools
 
         public int IndexOfSelectedItem { get; private set; }
 
+        public bool IsFull => this._set.Count >= Toolset._size;
+
 
         public Toolset(IEnumerable<EntityType> initialEntityTypes)
             : this()

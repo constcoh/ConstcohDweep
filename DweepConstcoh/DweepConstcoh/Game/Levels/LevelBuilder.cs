@@ -22,8 +22,8 @@ namespace DweepConstcoh.Game.Levels
                     new Level1(entityFactory)
                 },
                 {
-                    LevelNumber.Level2,
-                    new Level2(entityFactory)
+                    LevelNumber.Level5,
+                    new Level5(entityFactory)
                 }
             };
         }

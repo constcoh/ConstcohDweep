@@ -9,7 +9,7 @@ namespace DweepConstcoh.Game.Entities.RotateEntities
                   EntityType.RotateToLeft,
                   x,
                   y,
-                  MapLayer.Ground)
+                  MapLayer.OnGround)
         {
         }
     }

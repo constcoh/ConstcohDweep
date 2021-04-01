@@ -50,7 +50,7 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
                 MapLayer.Air
             };
 
-            this._painters = new IPainter[]
+            var painters = new List<IPainter>
             {
                 new GroundPainter(this._drawSettings),
                 new WallPainter(this._drawSettings),
@@ -72,6 +72,9 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
                 new RofateToLeftPainter(this._drawSettings),
                 new RofateToRightPainter(this._drawSettings),
             };
+
+            painters.Add(new ToolOnMapPainter(this._drawSettings, painters));
+            this._painters = painters;
         }
 
         public void Draw(Graphics graphics)
