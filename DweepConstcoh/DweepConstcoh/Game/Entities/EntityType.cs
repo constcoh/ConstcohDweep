@@ -21,6 +21,9 @@
 
         Bomb = 12,
         Fire = 13,
-        Torch = 14
+        Torch = 14,
+
+        RotateToLeft = 15,
+        RotateToRight = 16
     }
 }

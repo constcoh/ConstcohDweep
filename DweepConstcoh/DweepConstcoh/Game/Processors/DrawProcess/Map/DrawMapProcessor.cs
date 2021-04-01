@@ -7,6 +7,7 @@ using DweepConstcoh.Game.Processors.DrawProcess.Painters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.BombPainters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.GroundPainters;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.LazerEntities;
+using DweepConstcoh.Game.Processors.DrawProcess.Painters.RotateEntities;
 using DweepConstcoh.Game.Processors.DrawProcess.Painters.ToolsetPainters;
 using MoreLinq;
 
@@ -66,7 +67,10 @@ namespace DweepConstcoh.Game.Processors.DrawProcess.Map
 
                 new BombPainter(this._drawSettings),
                 new FirePainter(this._drawSettings),
-                new TorchPainter(this._drawSettings)
+                new TorchPainter(this._drawSettings),
+
+                new RofateToLeftPainter(this._drawSettings),
+                new RofateToRightPainter(this._drawSettings),
             };
         }
 

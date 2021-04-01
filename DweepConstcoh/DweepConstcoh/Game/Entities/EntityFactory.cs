@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CuttingEdge.Conditions;
 using DweepConstcoh.Game.Entities.BombEntities;
 using DweepConstcoh.Game.Entities.LazerEntities;
+using DweepConstcoh.Game.Entities.RotateEntities;
 using DweepConstcoh.Game.Entities.ToolsetEntities;
 using DweepConstcoh.Game.MapStructure;
 using DweepConstcoh.Game.Processors.TaskProcess;
@@ -41,7 +42,10 @@ namespace DweepConstcoh.Game.Entities
                 { EntityType.PlayerMover, typeof(PlayerMoverEntity) },
                 { EntityType.ToolsetSelector, typeof(ToolsetSelectorEntity) },
 
-                { EntityType.Torch, typeof(TorchEntity) }
+                { EntityType.Torch, typeof(TorchEntity) },
+
+                { EntityType.RotateToLeft, typeof(RotateToLeftEntity) },
+                { EntityType.RotateToRight, typeof(RotateToRightEntity) },
             };
         }
 

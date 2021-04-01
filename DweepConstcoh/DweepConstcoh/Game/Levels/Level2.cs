@@ -64,14 +64,14 @@ namespace DweepConstcoh.Game.Levels
         {
             Condition.Requires(toolset, nameof(toolset)).IsNotNull();
 
-            toolset.Add(EntityType.Torch);
-            toolset.Add(EntityType.Torch);
-            toolset.Add(EntityType.Torch);
-            toolset.Add(EntityType.Torch);
-            toolset.Add(EntityType.MirrowSideDiagonal);
-            toolset.Add(EntityType.MirrowSideDiagonal);
-            toolset.Add(EntityType.MirrowMainDiagonal);
-            toolset.Add(EntityType.MirrowMainDiagonal);
+            toolset.Add(EntityType.RotateToLeft);
+            toolset.Add(EntityType.RotateToLeft);
+            toolset.Add(EntityType.RotateToLeft);
+            toolset.Add(EntityType.RotateToLeft);
+            toolset.Add(EntityType.RotateToRight);
+            toolset.Add(EntityType.RotateToRight);
+            toolset.Add(EntityType.RotateToRight);
+            toolset.Add(EntityType.RotateToRight);
         }
     }
 }

@@ -29,7 +29,20 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
             this.Position = position;
         }
 
-        public MirrorPosition Position { get; }
+        public MirrorPosition Position { get; private set; }
+
+        public override bool ApplyTool(EntityType entityType)
+        {
+            switch (entityType)
+            {
+                case EntityType.RotateToLeft:
+                case EntityType.RotateToRight:
+                    this.Rotate();
+                    return true;
+            }
+
+            return false;
+        }
 
         public override void Bomb()
         {
@@ -46,6 +59,13 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
                 this.X,
                 this.Y,
                 this.Position.GetReflectedRay(incomingRay.Direction));
+        }
+
+        private void Rotate()
+        {
+            this.Position = this.Position == MirrorPosition.MainDiagonal
+                ? MirrorPosition.SideDiagonal
+                : MirrorPosition.MainDiagonal;
         }
     }
 }

@@ -38,9 +38,24 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
             this.State = LazerState.Works;
         }
 
-        public LazerDirection GlowDirection { get; }
+        public LazerDirection GlowDirection { get; private set; }
 
         public LazerState State { get; private set; }
+
+        public override bool ApplyTool(EntityType entityType)
+        {
+            switch (entityType)
+            {
+                case EntityType.RotateToLeft:
+                    this.GlowDirection = this.GlowDirection.RotateToLeft();
+                    return true;
+                case EntityType.RotateToRight:
+                    this.GlowDirection = this.GlowDirection.RotateToRight();
+                    return true;
+            }
+
+            return false;
+        }
 
         public IncomingLazerRayEntity CreateProducedRay()
         {

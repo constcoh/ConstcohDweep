@@ -118,6 +118,8 @@
     <Compile Include="Game\Entities\LazerEntities\Rays\OutgoingLazerRayEntity.cs" />
     <Compile Include="Game\Entities\PlayerEntity.cs" />
     <Compile Include="Game\Entities\PlayerState.cs" />
+    <Compile Include="Game\Entities\RotateEntities\RotateToRightEntity.cs" />
+    <Compile Include="Game\Entities\RotateEntities\RotateToLeftEntity.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\ToolsetSelectorEntity.cs" />
     <Compile Include="Game\Entities\ToolsetEntities\PlayerMoverEntity.cs" />
     <Compile Include="Game\Game.cs" />
@@ -143,6 +145,8 @@
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\MirrorPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\LazerEntities\LazerRayPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\RotateEntities\RofateToLeftPainter.cs" />
+    <Compile Include="Game\Processors\DrawProcess\Painters\RotateEntities\RofateToRightPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\ToolsetSelectorPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Painters\ToolsetPainters\PlayerMoverPainter.cs" />
     <Compile Include="Game\Processors\DrawProcess\Tools\DrawToolsetProcessor.cs" />

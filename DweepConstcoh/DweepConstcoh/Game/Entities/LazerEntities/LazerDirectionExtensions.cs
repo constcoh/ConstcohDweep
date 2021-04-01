@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DweepConstcoh.Game.Entities.LazerEntities
 {
@@ -17,6 +18,34 @@ namespace DweepConstcoh.Game.Entities.LazerEntities
             this LazerDirection direction)
         {
             return LazerDirectionExtensions.OppositeDirection[direction];
+        }
+
+        public static LazerDirection RotateToLeft(
+            this LazerDirection direction)
+        {
+            switch (direction)
+            {
+                case LazerDirection.Top: return LazerDirection.Left;
+                case LazerDirection.Left: return LazerDirection.Down;
+                case LazerDirection.Down: return LazerDirection.Right;
+                case LazerDirection.Right: return LazerDirection.Top;
+            }
+
+            throw new Exception("unknown lazer direction");
+        }
+
+        public static LazerDirection RotateToRight(
+            this LazerDirection direction)
+        {
+            switch (direction)
+            {
+                case LazerDirection.Top: return LazerDirection.Right;
+                case LazerDirection.Right: return LazerDirection.Down;
+                case LazerDirection.Down: return LazerDirection.Left;
+                case LazerDirection.Left: return LazerDirection.Top;
+            }
+
+            throw new Exception("unknown lazer direction");
         }
     }
 }
